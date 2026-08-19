@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Tasks - Dashboard</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Color Palette & Custom Properties */
+        :root {
+            --bg-base: #060913;
+            --bg-surface: #0b0f19;
+            --bg-card: rgba(22, 28, 45, 0.4);
+            --bg-card-hover: rgba(30, 41, 59, 0.6);
+            --border-color: rgba(255, 255, 255, 0.07);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            /* Subject Colors */
+            --color-html: #ff6b3b;
+            --color-html-rgb: 255, 107, 59;
+            --color-css: #00d2ff;
+            --color-css-rgb: 0, 210, 255;
+            --color-bootstrap: #8a2be2;
+            --color-bootstrap-rgb: 138, 43, 226;
+            --color-js: #ffd700;
+            --color-js-rgb: 255, 215, 0;
+            --color-extra: #10b981;
+            --color-extra-rgb: 16, 185, 129;
+            
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-display: 'Space Grotesk', var(--font-main);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 210, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-hover);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Container Layout */
+        .dashboard-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* Quick Filter/Navigation Menu in Header */
+        .header-nav {
+            display: inline-flex;
+            gap: 0.75rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem;
+            border-radius: 100px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-pill {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-pill:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-pill.html-pill:hover { color: var(--color-html); background: rgba(255, 107, 59, 0.1); }
+        .nav-pill.css-pill:hover { color: var(--color-css); background: rgba(0, 210, 255, 0.1); }
+        .nav-pill.bs-pill:hover { color: var(--color-bootstrap); background: rgba(138, 43, 226, 0.1); }
+        .nav-pill.js-pill:hover { color: var(--color-js); background: rgba(255, 215, 0, 0.1); }
+
+        /* Search Bar styling */
+        .search-container {
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.9rem 1.2rem 0.9rem 2.8rem;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(165, 180, 252, 0.4);
+            box-shadow: 0 0 15px rgba(165, 180, 252, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
+            pointer-events: none;
+        }
+
+        /* Subjects Grid layout */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        /* Subject Card Design */
+        .subject-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--theme-gradient);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        /* Card Header details */
+        .subject-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .subject-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .subject-icon-wrap {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--theme-rgb), 0.15);
+            border: 1px solid rgba(var(--theme-rgb), 0.25);
+        }
+
+        .subject-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--theme-color);
+        }
+
+        .progress-circle-wrap {
+            position: relative;
+            width: 38px;
+            height: 38px;
+        }
+
+        .progress-circle-svg {
+            transform: rotate(-90deg);
+            width: 38px;
+            height: 38px;
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 4;
+        }
+
+        .progress-circle-bar {
+            fill: none;
+            stroke: var(--theme-color);
+            stroke-width: 4;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.8s ease-in-out;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .subject-title {
+            font-family: var(--font-display);
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .subject-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            min-height: 2.5rem;
+        }
+
+        /* Day list styles */
+        .day-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* Day Item Styles */
+        .day-item {
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.3);
+            transition: var(--transition-smooth);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Master wrapper for interactive or simple day link */
+        .day-header-btn {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: inherit;
+            font-family: inherit;
+            text-align: left;
+            padding: 0.9rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        a.day-header-btn {
+            text-decoration: none;
+        }
+
+        .day-header-btn:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Day Item Header contents */
+        .day-main-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+        }
+
+        /* Circular checkbox tracker */
+        .task-checkbox {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            background: transparent;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .task-checkbox:hover {
+            border-color: var(--theme-color);
+            background: rgba(var(--theme-rgb), 0.1);
+        }
+
+        .day-item.completed .task-checkbox {
+            background: var(--theme-color);
+            border-color: var(--theme-color);
+            box-shadow: 0 0 8px rgba(var(--theme-rgb), 0.4);
+        }
+
+        .check-svg {
+            width: 10px;
+            height: 8px;
+            fill: #000000;
+            display: none;
+        }
+
+        .day-item.completed .check-svg {
+            display: block;
+        }
+
+        .day-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .day-task-summary {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+            transition: var(--transition-smooth);
+        }
+
+        .day-item.completed .day-name {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        /* Icon indicators */
+        .day-action-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .day-header-btn:hover .day-action-icon {
+            fill: var(--text-primary);
+            transform: translateX(2px);
+        }
+
+        /* For accordion style multi-links */
+        .day-item.expandable.active {
+            border-color: rgba(var(--theme-rgb), 0.3);
+            box-shadow: 0 4px 15px rgba(var(--theme-rgb), 0.05);
+        }
+
+        .day-item.expandable .day-action-icon {
+            transform: rotate(0deg);
+        }
+
+        .day-item.expandable.active .day-action-icon {
+            transform: rotate(180deg);
+            fill: var(--theme-color);
+        }
+
+        .day-item.expandable.active .day-header-btn:hover .day-action-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Sub list transition panel */
+        .sub-tasks-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid transparent;
+        }
+
+        .day-item.expandable.active .sub-tasks-panel {
+            border-top-color: var(--border-color);
+        }
+
+        .sub-tasks-list {
+            padding: 0.6rem 0.75rem 0.75rem 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .sub-task-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-decoration: none;
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .sub-task-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .sub-task-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            margin-right: 0.5rem;
+            display: inline-block;
+        }
+
+        .sub-task-link:hover .sub-task-indicator {
+            background: var(--theme-color);
+            box-shadow: 0 0 6px var(--theme-color);
+        }
+
+        /* Locked/Disabled Day cards */
+        .day-item.locked {
+            opacity: 0.35;
+            background: rgba(255, 255, 255, 0.01);
+            border-style: dashed;
+            cursor: not-allowed;
+        }
+
+        .day-item.locked .day-header-btn {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .day-item.locked .day-name {
+            color: var(--text-muted);
+        }
+
+        .day-item.locked .task-checkbox {
+            border-color: rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+        }
+
+        /* Special Project card style in bootstrap list */
+        .special-project-card {
+            margin-top: 0.5rem;
+            padding: 1rem;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .special-project-card:hover {
+            border-color: var(--color-bootstrap);
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.25) 0%, rgba(0, 0, 0, 0.5) 100%);
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .project-badge {
+            background: var(--color-bootstrap);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Extra Topics Layout */
+        .extra-section-title {
+            font-family: var(--font-display);
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: -0.01em;
+            background: linear-gradient(135deg, #ffffff 50%, var(--color-extra) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .extra-topics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .extra-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+        }
+
+        .extra-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-extra), #00b0ff);
+        }
+
+        .extra-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .extra-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .extra-title-block {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .extra-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .extra-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .extra-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .extra-link {
+            text-decoration: none;
+            color: var(--text-primary);
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+        }
+
+        .extra-link:hover {
+            border-color: rgba(var(--color-extra-rgb), 0.4);
+            background: rgba(var(--color-extra-rgb), 0.05);
+            color: var(--color-extra);
+        }
+
+        .extra-link.wide {
+            grid-column: span 2;
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 5rem;
+            text-align: center;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* SVG helper styles */
+        .btn-arrow {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1200px) {
+            .subjects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .subjects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .extra-topics-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .dashboard-container {
+                padding: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .header-badge {
+                font-size: 0.75rem;
+            }
+            .header-nav {
+                display: none; /* Hide sub nav pills on mobile to save space */
+            }
+            .extra-links-grid {
+                grid-template-columns: 1fr;
+            }
+            .extra-link.wide {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Inline SVG definitions for efficiency -->
+    <svg style="display: none;">
+        <symbol id="icon-folder" viewBox="0 0 24 24">
+            <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/>
+        </symbol>
+        <symbol id="icon-lock" viewBox="0 0 24 24">
+            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+        </symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24">
+            <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </symbol>
+        <symbol id="icon-html" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5v-5l-10 5-10-5v5z"/>
+        </symbol>
+    </svg>
+
+    <div class="dashboard-container">
+        
+        <!-- Header -->
+        <header>
+            <div class="header-badge">Roadmap Tracking Enabled</div>
+            <h1>Web Development Tasks</h1>
+            <p class="subtitle">HTML • CSS • Bootstrap • JavaScript — Day 1 to Day 12. Interactive task tracking to manage and monitor your learning progress.</p>
+            
+            <div class="header-nav">
+                <a href="#section-html" class="nav-pill html-pill">HTML</a>
+                <a href="#section-css" class="nav-pill css-pill">CSS</a>
+                <a href="#section-bootstrap" class="nav-pill bs-pill">Bootstrap</a>
+                <a href="#section-javascript" class="nav-pill js-pill">JavaScript</a>
+                <a href="#section-extras" class="nav-pill">Bonus Modules</a>
+            </div>
+
+            <div class="search-container">
+                <svg class="search-icon"><use xlink:href="#icon-search"></use></svg>
+                <input type="text" class="search-input" id="taskSearch" placeholder="Search tasks, e.g. 'form', 'flexbox', 'table'...">
+            </div>
+        </header>
+
+        <!-- Subjects Grid -->
+        <div class="subjects-grid">
+            
+            <!-- COLUMN 1: HTML -->
+            <div class="subject-card" id="section-html" style="
+                --theme-color: var(--color-html);
+                --theme-rgb: var(--color-html-rgb);
+                --theme-gradient: linear-gradient(90deg, #ff8a65, var(--color-html));
+            ">
+                <div class="subject-header">
+                    <div class="subject-meta">
+                        <div class="subject-icon-wrap">
+                            <!-- Orange Folder Icon -->
+                            <svg class="subject-icon"><use xlink:href="#icon-folder"></use></svg>
+                        </div>
+                        <!-- Progress Ring -->
+                        <div class="progress-circle-wrap" id="progress-html">
+                            <svg class="progress-circle-svg">
+                                <circle class="progress-circle-bg" cx="19" cy="19" r="16" />
+                                <circle class="progress-circle-bar" cx="19" cy="19" r="16" />
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                    <h2 class="subject-title">HTML</h2>
+                    <p class="subject-desc">Structure, Forms, Tables, Multimedia Elements & semantic tagging</p>
+                </div>
+
+                <div class="day-list">
+                    <!-- Day 1 -->
+                    <div class="day-item expandable" data-day="html-1">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-1')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 1</span>
+                                <span class="day-task-summary">6 Tasks</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day1/task1.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 1: Basic Tags</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day1/task2.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Text Formatting</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day1/task3.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 3: Hyperlinks</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day1/task4.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 4: Basic Tables</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day1/task5.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 5: Basic Forms</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day1/fav.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Fav Foods List</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="day-item expandable" data-day="html-2">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-2')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 2</span>
+                                <span class="day-task-summary">5 Tasks</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day2/task1.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 1: Semantic Structure</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day2/task2.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Layout Tags</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day2/task3.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 3: Navigation Bar</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day2/task4.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 4: Main Layout</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day2/task5.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 5: Footer & Info</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 -->
+                    <div class="day-item expandable" data-day="html-3">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-3')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 3</span>
+                                <span class="day-task-summary">Attributes & Images</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day3/attribute.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Tag Attributes</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day3/image.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Images & Anchors</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day3/nearbyhome.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Nearby Home Map</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 4 -->
+                    <div class="day-item expandable" data-day="html-4">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-4')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 4</span>
+                                <span class="day-task-summary">Linking Tasks</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day4/task2/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Navigation Hub</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day4/task4/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 4: List Navigation</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 5 -->
+                    <div class="day-item expandable" data-day="html-5">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-5')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 5</span>
+                                <span class="day-task-summary">Forms Practice</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day5/registration.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Registration Form</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day5/login.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Login Form</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day5/contact.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Contact Form</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day5/feedback.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Feedback Form</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day5/job.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Job Application Form</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 6 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 6</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+
+                    <!-- Day 7 -->
+                    <div class="day-item expandable" data-day="html-7">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-7')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 7</span>
+                                <span class="day-task-summary">Casting Form</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day7/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Registration Home</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day7/pages/casting.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Casting Details</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 8 -->
+                    <div class="day-item expandable" data-day="html-8">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-8')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 8</span>
+                                <span class="day-task-summary">Complex Tables</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day8/college.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>College Admission</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day8/company.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Company Invoice</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day8/document.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Document Matrix</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day8/portfolio.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Portfolio Overview</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day8/travel.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Travel Itinerary</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 9 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 9</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+
+                    <!-- Day 10 -->
+                    <div class="day-item expandable" data-day="html-10">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-10')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 10</span>
+                                <span class="day-task-summary">Tables & Forms</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day10/form.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Form Table</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day10/table.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Data Display Table</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day10/task1/student.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Student Register</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day10/task1/employee.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Employee Log</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day10/task1/product.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Product Registry</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day10/task1/patient.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Patient Profile</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day10/task1/admission.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Admission Registry</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 11 -->
+                    <div class="day-item" data-day="html-11">
+                        <a href="HTML/day11/audio.html" target="_blank" class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-11')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 11</span>
+                                <span class="day-task-summary">Audio Player Task</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </div>
+
+                    <!-- Day 12 -->
+                    <div class="day-item expandable" data-day="html-12">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'html-12')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 12</span>
+                                <span class="day-task-summary">Multimedia Hub</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="HTML/day12/task1/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Main Hub Page</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day12/task1/audio.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Audio File Player</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day12/task1/video.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Local Video Player</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day12/task1/youtube.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Embedded YouTube</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="HTML/day12/task1/image.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Image Showcase</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: CSS -->
+            <div class="subject-card" id="section-css" style="
+                --theme-color: var(--color-css);
+                --theme-rgb: var(--color-css-rgb);
+                --theme-gradient: linear-gradient(90deg, #33f0ff, var(--color-css));
+            ">
+                <div class="subject-header">
+                    <div class="subject-meta">
+                        <div class="subject-icon-wrap">
+                            <svg class="subject-icon"><use xlink:href="#icon-folder"></use></svg>
+                        </div>
+                        <div class="progress-circle-wrap" id="progress-css">
+                            <svg class="progress-circle-svg">
+                                <circle class="progress-circle-bg" cx="19" cy="19" r="16" />
+                                <circle class="progress-circle-bar" cx="19" cy="19" r="16" />
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                    <h2 class="subject-title">CSS</h2>
+                    <p class="subject-desc">Styles, Selectors, Box Model, Flexbox, Positions & Advanced Selectors</p>
+                </div>
+
+                <div class="day-list">
+                    <!-- Day 1 -->
+                    <div class="day-item expandable" data-day="css-1">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-1')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 1</span>
+                                <span class="day-task-summary">7 Tasks</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day1/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Day 1: CSS Types</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css1/profile.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Profile Card</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css1/student.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Student Report</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css1/college.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>College Page</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css1/company.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Company Details</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css1/fav.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Favorite Foods</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css1/colour.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Color Schemes</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="day-item expandable" data-day="css-2">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-2')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 2</span>
+                                <span class="day-task-summary">7 Tasks</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day2/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Day 2: Selectors</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css2/index.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>State Info Portal</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css2/chennai.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Chennai Profile</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css2/movie.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Movie Spotlight</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css2/hospital.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Hospital Info</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css2/department.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Department Directory</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css2/company.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Company Profile</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 -->
+                    <div class="day-item expandable" data-day="css-3">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-3')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 3</span>
+                                <span class="day-task-summary">6 Cards/Layouts</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day3/student.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Student Dashboard</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day3/employee.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Employee Directory</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day3/product.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Product Grid</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day3/card.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Flex Cards</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day3/box.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Box Model Check</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day3/article.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Article Typography</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 4 -->
+                    <div class="day-item expandable" data-day="css-4">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-4')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 4</span>
+                                <span class="day-task-summary">5 Layout Tasks</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day4/task1.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 1: Navigation Layout</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day4/task2.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Layout Alignments</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day4/task4.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 4: List Alignments</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day4/task5.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 5: Hover Blocks</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/css4/box.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>CSS4: Box Layout</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 5 -->
+                    <div class="day-item" data-day="css-5">
+                        <a href="CSS/css5/index.html" target="_blank" class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-5')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 5</span>
+                                <span class="day-task-summary">CSS Grid Layout</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </div>
+
+                    <!-- Day 6 -->
+                    <div class="day-item expandable" data-day="css-6">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-6')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 6</span>
+                                <span class="day-task-summary">Flexbox Practice</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day6/box5.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Box Grid</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day6/boxes.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Boxes Flex</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day6/chat.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Chat Layout</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day6/nav.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Flex Navigation</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day6/shop.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Shop Grid</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 7 -->
+                    <div class="day-item expandable" data-day="css-7">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-7')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 7</span>
+                                <span class="day-task-summary">CSS Position</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day7/task1.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 1: Positions Basics</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day7/task2.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Absolute & Sticky Navbar</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day7/task3.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 3: Overlap Cards</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day7/task4.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 4: Card Overlay Details</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 8 -->
+                    <div class="day-item expandable" data-day="css-8">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'css-8')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 8</span>
+                                <span class="day-task-summary">Pseudo Selectors</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="CSS/day8/task1.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 1: Selectors Practice</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day8/task2.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Hover Styles</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day8/task3.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 3: Form Pseudo States</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day8/task4.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 4: Layering & Z-Index</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="CSS/day8/task5.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 5: Pseudo-elements</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 9 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 9</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+
+                    <!-- Day 10 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 10</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+
+                    <!-- Day 11 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 11</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+
+                    <!-- Day 12 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 12</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: BOOTSTRAP -->
+            <div class="subject-card" id="section-bootstrap" style="
+                --theme-color: var(--color-bootstrap);
+                --theme-rgb: var(--color-bootstrap-rgb);
+                --theme-gradient: linear-gradient(90deg, #d395ff, var(--color-bootstrap));
+            ">
+                <div class="subject-header">
+                    <div class="subject-meta">
+                        <div class="subject-icon-wrap">
+                            <svg class="subject-icon"><use xlink:href="#icon-folder"></use></svg>
+                        </div>
+                        <div class="progress-circle-wrap" id="progress-bootstrap">
+                            <svg class="progress-circle-svg">
+                                <circle class="progress-circle-bg" cx="19" cy="19" r="16" />
+                                <circle class="progress-circle-bar" cx="19" cy="19" r="16" />
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                    <h2 class="subject-title">Bootstrap</h2>
+                    <p class="subject-desc">Responsive Grids, Components, Tables, Forms & Modern Website Creation</p>
+                </div>
+
+                <div class="day-list">
+                    <!-- Day 1 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox"></div>
+                                <span class="day-name">Day 1</span>
+                                <span class="day-task-summary">Coming Soon</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="day-item expandable" data-day="bootstrap-2">
+                        <div class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'bootstrap-2')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 2</span>
+                                <span class="day-task-summary">3 Layouts</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-chevron-down"></use></svg>
+                        </div>
+                        <div class="sub-tasks-panel">
+                            <div class="sub-tasks-list">
+                                <a href="bootstrap/day2/task1.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 1: Text & Buttons</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="bootstrap/day2/task2.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 2: Tables & Inputs</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                                <a href="bootstrap/day2/task3.html" target="_blank" class="sub-task-link"><span class="sub-task-label"><span class="sub-task-indicator"></span>Task 3: Grids & Flex</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Days 3 to 12 (Coming Soon) -->
+                    <!-- Repeat template up to day 12 -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 3</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 4</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 5</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 6</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 7</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 8</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 9</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 10</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 11</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 12</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+
+                    <!-- Special Project Button -->
+                    <a href="bootstrap/website/index.html" target="_blank" class="special-project-card">
+                        <span class="project-badge">Featured project</span>
+                        <div class="project-title">Bootstrap Website</div>
+                        <p class="project-desc">Interactive responsive landing page with full navigation & carousel components.</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- COLUMN 4: JAVASCRIPT -->
+            <div class="subject-card" id="section-javascript" style="
+                --theme-color: var(--color-js);
+                --theme-rgb: var(--color-js-rgb);
+                --theme-gradient: linear-gradient(90deg, #fff275, var(--color-js));
+            ">
+                <div class="subject-header">
+                    <div class="subject-meta">
+                        <div class="subject-icon-wrap">
+                            <svg class="subject-icon"><use xlink:href="#icon-folder"></use></svg>
+                        </div>
+                        <div class="progress-circle-wrap" id="progress-javascript">
+                            <svg class="progress-circle-svg">
+                                <circle class="progress-circle-bg" cx="19" cy="19" r="16" />
+                                <circle class="progress-circle-bar" cx="19" cy="19" r="16" />
+                            </svg>
+                            <span class="progress-text">0%</span>
+                        </div>
+                    </div>
+                    <h2 class="subject-title">JavaScript</h2>
+                    <p class="subject-desc">Variables, scopes, functions, DOM logic, API calls & async scripting</p>
+                </div>
+
+                <div class="day-list">
+                    <!-- Day 1 -->
+                    <div class="day-item" data-day="js-1">
+                        <a href="javascript/day1/var,let,const.txt" target="_blank" class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'js-1')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 1</span>
+                                <span class="day-task-summary">var, let, const (TXT)</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="day-item" data-day="js-2">
+                        <a href="javascript/day2/variables.txt" target="_blank" class="day-header-btn">
+                            <div class="day-main-info">
+                                <div class="task-checkbox" onclick="toggleTaskCheckbox(event, 'js-2')">
+                                    <svg class="check-svg" viewBox="0 0 10 8"><path d="M1 4.5l2.5 2.5L9 1" stroke="#000" stroke-width="2" fill="none"/></svg>
+                                </div>
+                                <span class="day-name">Day 2</span>
+                                <span class="day-task-summary">Scopes & Types (TXT)</span>
+                            </div>
+                            <svg class="day-action-icon"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </div>
+
+                    <!-- Days 3 to 12 (Coming Soon) -->
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 3</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 4</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 5</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 6</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 7</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 8</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 9</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 10</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 11</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                    <div class="day-item locked">
+                        <div class="day-header-btn"><div class="day-main-info"><div class="task-checkbox"></div><span class="day-name">Day 12</span><span class="day-task-summary">Coming Soon</span></div><svg class="day-action-icon"><use xlink:href="#icon-lock"></use></svg></div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /subjects-grid -->
+
+        <!-- BONUS MODULES SECTION -->
+        <h2 class="extra-section-title" id="section-extras">Bonus Learning Modules</h2>
+        <div class="extra-topics-grid">
+            
+            <!-- HTML & CSS Combined Tasks -->
+            <div class="extra-card">
+                <div class="extra-header">
+                    <div class="extra-title-block">
+                        <div class="subject-icon-wrap" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.25);">
+                            <svg class="subject-icon" style="fill: var(--color-extra);"><use xlink:href="#icon-folder"></use></svg>
+                        </div>
+                        <h3 class="extra-title">HTML & CSS Combined</h3>
+                    </div>
+                </div>
+                <p class="extra-desc">Integrated layout assessments combining structures and styling stylesheets.</p>
+                <div class="extra-links-grid">
+                    <a href="html&css/task1.html" target="_blank" class="extra-link"><span>Task 1</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                    <a href="html&css/task2.html" target="_blank" class="extra-link"><span>Task 2</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                    <a href="html&css/task3.html" target="_blank" class="extra-link"><span>Task 3</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                    <a href="html&css/task4.html" target="_blank" class="extra-link"><span>Task 4</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                    <a href="html&css/task5.html" target="_blank" class="extra-link"><span>Task 5</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                    <a href="html&css/test.html" target="_blank" class="extra-link" style="border-color: rgba(16, 185, 129, 0.3);"><span>Assessment Test</span> <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg></a>
+                </div>
+            </div>
+
+            <!-- Tailwind CSS Day 5 -->
+            <div class="extra-card" style="justify-content: space-between;">
+                <div>
+                    <div class="extra-header">
+                        <div class="extra-title-block">
+                            <div class="subject-icon-wrap" style="background: rgba(14, 165, 233, 0.15); border-color: rgba(14, 165, 233, 0.25);">
+                                <svg class="subject-icon" style="fill: #0ea5e9;"><use xlink:href="#icon-folder"></use></svg>
+                            </div>
+                            <h3 class="extra-title">Tailwind CSS</h3>
+                        </div>
+                    </div>
+                    <p class="extra-desc">Utility-first CSS styling engine layout project. Styled with rapid UI classes.</p>
+                </div>
+                <div class="extra-links-grid">
+                    <a href="tailwind/day5/index.html" target="_blank" class="extra-link wide" style="border-color: rgba(14, 165, 233, 0.3);">
+                        <span>Day 5 Utility Layout Project</span>
+                        <svg class="btn-arrow"><use xlink:href="#icon-arrow-right"></use></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p class="footer-logo">Web Development Roadmap</p>
+            <p>Built with modern glassmorphism, responsive grids & dynamic search.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">Learning Dashboard &copy; 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Store checkbox status locally
+        const localStorageKey = 'web-dev-dashboard-tasks';
+
+        // Load progress states
+        let completedDays = {};
+        try {
+            const savedData = localStorage.getItem(localStorageKey);
+            if (savedData) {
+                completedDays = JSON.parse(savedData);
+            }
+        } catch (e) {
+            console.error("Could not parse saved storage data", e);
+        }
+
+        // Apply completed classes on load
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.keys(completedDays).forEach(dayId => {
+                if (completedDays[dayId]) {
+                    const el = document.querySelector(`.day-item[data-day="${dayId}"]`);
+                    if (el) {
+                        el.classList.add('completed');
+                    }
+                }
+            });
+            updateAllSubjectProgress();
+            setupAccordionToggle();
+            setupSearch();
+        });
+
+        // Toggle checkboxes
+        function toggleTaskCheckbox(event, dayId) {
+            event.stopPropagation(); // Stop click from bubbling up to expander
+            const el = document.querySelector(`.day-item[data-day="${dayId}"]`);
+            if (!el) return;
+
+            const isCompleted = el.classList.toggle('completed');
+            completedDays[dayId] = isCompleted;
+            
+            try {
+                localStorage.setItem(localStorageKey, JSON.stringify(completedDays));
+            } catch (e) {
+                console.error("Failed to save progress", e);
+            }
+
+            updateAllSubjectProgress();
+        }
+
+        // Calculate and update progress rings
+        function updateAllSubjectProgress() {
+            const subjects = [
+                { id: 'html', selector: '#section-html', days: ['html-1', 'html-2', 'html-3', 'html-4', 'html-5', 'html-7', 'html-8', 'html-10', 'html-11', 'html-12'] },
+                { id: 'css', selector: '#section-css', days: ['css-1', 'css-2', 'css-3', 'css-4', 'css-5', 'css-6', 'css-7', 'css-8'] },
+                { id: 'bootstrap', selector: '#section-bootstrap', days: ['bootstrap-2'] },
+                { id: 'javascript', selector: '#section-javascript', days: ['js-1', 'js-2'] }
+            ];
+
+            subjects.forEach(sub => {
+                const totalActiveDays = sub.days.length;
+                let completedCount = 0;
+                sub.days.forEach(dayId => {
+                    if (completedDays[dayId]) {
+                        completedCount++;
+                    }
+                });
+
+                const percentage = totalActiveDays > 0 ? Math.round((completedCount / totalActiveDays) * 100) : 0;
+                
+                // Update SVG ring and Text
+                const ringContainer = document.querySelector(`#progress-${sub.id}`);
+                if (ringContainer) {
+                    const textEl = ringContainer.querySelector('.progress-text');
+                    const barEl = ringContainer.querySelector('.progress-circle-bar');
+                    
+                    if (textEl) textEl.textContent = `${percentage}%`;
+                    if (barEl) {
+                        // Formula: circumference = 2 * pi * r = 2 * 3.14159 * 16 = 100.53
+                        // So dashoffset values range from 100.53 (0%) to 0 (100%)
+                        const strokeOffset = 100 - percentage;
+                        barEl.style.strokeDashoffset = strokeOffset;
+                    }
+                }
+            });
+        }
+
+        // Toggle expander accordion
+        function setupAccordionToggle() {
+            const expandableItems = document.querySelectorAll('.day-item.expandable');
+            expandableItems.forEach(item => {
+                const btn = item.querySelector('.day-header-btn');
+                btn.addEventListener('click', (e) => {
+                    // Avoid toggle if checkbox was clicked
+                    if (e.target.closest('.task-checkbox')) return;
+
+                    const panel = item.querySelector('.sub-tasks-panel');
+                    const isActive = item.classList.contains('active');
+
+                    // Close all other active expanders in this column to keep layout clean
+                    const column = item.closest('.subject-card');
+                    column.querySelectorAll('.day-item.expandable.active').forEach(activeItem => {
+                        if (activeItem !== item) {
+                            activeItem.classList.remove('active');
+                            activeItem.querySelector('.sub-tasks-panel').style.maxHeight = null;
+                        }
+                    });
+
+                    if (isActive) {
+                        item.classList.remove('active');
+                        panel.style.maxHeight = null;
+                    } else {
+                        item.classList.add('active');
+                        panel.style.maxHeight = panel.scrollHeight + 'px';
+                    }
+                });
+            });
+        }
+
+        // Setup search filter
+        function setupSearch() {
+            const searchInput = document.getElementById('taskSearch');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+
+                const dayItems = document.querySelectorAll('.day-item');
+                
+                dayItems.forEach(item => {
+                    // Check if coming soon/locked
+                    if (item.classList.contains('locked')) {
+                        if (query === '') {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                        return;
+                    }
+
+                    const dayName = item.querySelector('.day-name').textContent.toLowerCase();
+                    const taskSummary = item.querySelector('.day-task-summary') ? item.querySelector('.day-task-summary').textContent.toLowerCase() : '';
+                    
+                    // Check sub-tasks
+                    let hasMatchingSubtask = false;
+                    const subLinks = item.querySelectorAll('.sub-task-link');
+                    
+                    subLinks.forEach(link => {
+                        const linkText = link.textContent.toLowerCase();
+                        if (linkText.includes(query)) {
+                            link.style.background = 'rgba(255, 255, 255, 0.08)';
+                            link.style.color = '#ffffff';
+                            hasMatchingSubtask = true;
+                        } else {
+                            link.style.background = '';
+                            link.style.color = '';
+                        }
+                    });
+
+                    const matchesMain = dayName.includes(query) || taskSummary.includes(query);
+
+                    if (query === '') {
+                        item.style.display = '';
+                        // Reset subpanels and styling
+                        subLinks.forEach(link => {
+                            link.style.background = '';
+                            link.style.color = '';
+                        });
+                        const panel = item.querySelector('.sub-tasks-panel');
+                        if (panel && !item.classList.contains('active')) {
+                            panel.style.maxHeight = null;
+                        }
+                    } else if (matchesMain || hasMatchingSubtask) {
+                        item.style.display = '';
+                        // Auto-expand accordion to show matching sub-tasks
+                        const panel = item.querySelector('.sub-tasks-panel');
+                        if (panel) {
+                            item.classList.add('active');
+                            panel.style.maxHeight = panel.scrollHeight + 'px';
+                        }
+                    } else {
+                        item.style.display = 'none';
+                        const panel = item.querySelector('.sub-tasks-panel');
+                        if (panel) {
+                            item.classList.remove('active');
+                            panel.style.maxHeight = null;
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
