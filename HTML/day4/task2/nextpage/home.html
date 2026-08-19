@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusAI Hubs - Products and Service Companies</title>
+    <!-- Relative CSS link -->
+    <link rel="stylesheet" href="../style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+    <!-- Header & Glassmorphic Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="logo-link">
+                <span class="logo-text">NexusAI</span>
+            </a>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../index.html#who-we-are">Who We Are</a>
+                <a href="../index.html#about-us">About Us</a>
+                <a href="../index.html#services">Services</a>
+                <a href="../index.html#technologies">Technologies</a>
+                <a href="home.html" class="active">Hub Locations</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner / Header Image -->
+    <div style="max-width: 1200px; margin: 2rem auto 0; padding: 0 2rem;">
+        <div class="image-wrapper" style="max-height: 350px; overflow: hidden; border-radius: 12px; box-shadow: var(--shadow-purple);">
+            <img src="../assests/images/logo/logo.webp" alt="NexusAI Hubs banner" style="width: 100%; height: auto; transform: translateY(-10%);">
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+        
+        <section id="hubs-intro">
+            <h1 class="section-title">Products and Services Hubs</h1>
+            <h2 style="text-align: center; color: var(--accent-cyan); font-size: 1.3rem; margin-top: -2rem; margin-bottom: 3rem; font-family: 'Inter', sans-serif; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;">
+                Companies in Chennai, Bangalore & Hyderabad
+            </h2>
+
+            <div class="company-details-card">
+                <div>
+                    <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        Chennai is a premier global hub for both IT services and software products, heavily concentrated in tech corridors like <mark>OMR (Old Mahabalipuram Road)</mark> and <mark>DLF IT Park</mark>. 
+                    </p>
+                    <p style="margin-bottom: 2rem;">
+                        The city hosts some of the world's most successful tech product companies alongside multi-billion dollar enterprise service providers, making it a critical talent capital in South Asia.
+                    </p>
+                    
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem;">
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 0.5rem; font-family: 'Orbitron';">Quick Navigation</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">
+                            Explore career pages and company profiles:
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem;">
+                            <a href="https://www.tcs.com/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600; background: rgba(0, 242, 254, 0.05); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2);">TCS &rarr;</a>
+                            <a href="https://careers.cognizant.com/india-en/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600; background: rgba(0, 242, 254, 0.05); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2);">Cognizant &rarr;</a>
+                            <a href="https://www.jobs.sutherlandglobal.com/" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600; background: rgba(0, 242, 254, 0.05); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2);">Sutherland &rarr;</a>
+                            <a href="https://www.amazon.jobs/content/en/locations/india/chennai" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600; background: rgba(0, 242, 254, 0.05); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2);">Amazon &rarr;</a>
+                            <a href="https://www.samsung.com/in/about-us/company-info/?srsltid=AfmBOoq6K3d1TNNUsvs3la1XEqFLbVFdPSFqNt5H0ZPatQikMBRAW_ph" target="_blank" style="color: var(--accent-cyan); text-decoration: none; font-weight: 600; background: rgba(0, 242, 254, 0.05); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(0, 242, 254, 0.2);">Samsung &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-wrapper">
+                    <img src="../assests/images/image/image.png" alt="tech companies in chennai map visual">
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Cards Section -->
+        <section id="companies-list" style="border-bottom: none;">
+            <h2 class="section-title">Explore Hub Companies</h2>
+            
+            <!-- Interactive Search & Filtering -->
+            <div class="interactive-section">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search companies (e.g. TCS, Amazon, Samsung)...">
+                </div>
+                
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="all">All Hubs</button>
+                    <button class="tab-btn" data-filter="product">Product-Based</button>
+                    <button class="tab-btn" data-filter="service">Service-Based</button>
+                </div>
+            </div>
+
+            <!-- Grid of Company Logo Cards -->
+            <div class="company-card-grid">
+                
+                <!-- TCS (Service) -->
+                <a href="https://www.tcs.com/" target="_blank" class="company-logo-card" data-type="service">
+                    <img src="../assests/images/image/image2.png" alt="Tata Consultancy Services logo">
+                    <h4>TCS</h4>
+                    <span>Service-Based</span>
+                </a>
+
+                <!-- Cognizant (Service) -->
+                <a href="https://careers.cognizant.com/india-en/" target="_blank" class="company-logo-card" data-type="service">
+                    <img src="../assests/images/image/images1.jpg" alt="Cognizant logo">
+                    <h4>Cognizant</h4>
+                    <span>Service-Based</span>
+                </a>
+
+                <!-- Sutherland (Service) -->
+                <a href="https://www.jobs.sutherlandglobal.com/" target="_blank" class="company-logo-card" data-type="service">
+                    <img src="../assests/images/image/image3.jpg" alt="Sutherland logo">
+                    <h4>Sutherland</h4>
+                    <span>Service-Based</span>
+                </a>
+
+                <!-- Amazon (Product) -->
+                <a href="https://www.amazon.jobs/content/en/locations/india/chennai" target="_blank" class="company-logo-card" data-type="product">
+                    <img src="../assests/images/image/images4.jpg" alt="Amazon logo">
+                    <h4>Amazon</h4>
+                    <span>Product-Based</span>
+                </a>
+
+                <!-- Samsung (Product) -->
+                <a href="https://www.samsung.com/in/about-us/company-info/?srsltid=AfmBOoq6K3d1TNNUsvs3la1XEqFLbVFdPSFqNt5H0ZPatQikMBRAW_ph" target="_blank" class="company-logo-card" data-type="product">
+                    <img src="../assests/images/image/image5.webp" alt="Samsung logo">
+                    <h4>Samsung</h4>
+                    <span>Product-Based</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Company Hub Directory -->
+        <section id="detailed-directory" style="border-top: 1px solid var(--border-color);">
+            <h2 class="section-title">Directory Overview</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="color: var(--accent-purple); font-size: 1.2rem; margin-bottom: 1rem;">Top Service-Based Providers</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Tech Mahindra:</strong> Specializes in IT services and customer support with large delivery centers across Chennai (major campuses in RMZ Millennia and DLF IT Park).
+                    </p>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Concentrix (formerly Concentrix & Webhelp):</strong> Headquartered in Chennai; a major global BPO specializing in customer support and experience management.
+                    </p>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Teleperformance (TP):</strong> A multinational BPO operating multiple centers across Chennai, offering omnichannel customer service.
+                    </p>
+                    <p style="font-size: 0.95rem;">
+                        <strong>Amazon Development Centre:</strong> A massive employer in Chennai’s Ramanujan IT City (Perungudi), hiring for massive global customer and retail business support operations.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3 style="color: var(--accent-cyan); font-size: 1.2rem; margin-bottom: 1rem;">Top Product-Based Software</h3>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Zoho Corporation:</strong> Headquartered locally in Guduvanchery, this tech giant develops a suite of cloud-based business and SaaS products.
+                    </p>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Freshworks:</strong> Located in the RMZ Millenia IT Park; pioneers in customer service and IT management software products.
+                    </p>
+                    <p style="font-size: 0.95rem; margin-bottom: 1rem;">
+                        <strong>Chargebee:</strong> Operating out of Perungudi, offering advanced subscription billing and revenue management products.
+                    </p>
+                    <p style="font-size: 0.95rem;">
+                        <strong>Kissflow:</strong> Based in Chennai; a major player in low-code and workflow automation products.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <span class="logo-text" style="display: inline-block; margin-bottom: 1rem;">NexusAI</span>
+                <p>A comprehensive insights directory mapping product-based and service-based technology systems in major Indian software hubs like Chennai, Bangalore, and Hyderabad.</p>
+                <div class="social-links">
+                    <a href="https://in.linkedin.com/" target="_blank">in</a>
+                    <a href="#" target="_blank">X</a>
+                    <a href="#" target="_blank">fb</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Product & SaaS Ecosystem</h4>
+                <ul>
+                    <li><a href="#">Product Features</a></li>
+                    <li><a href="#">SaaS Billing Integration</a></li>
+                    <li><a href="#">Security & Compliance (SOC 2)</a></li>
+                    <li><a href="#">Developer APIs</a></li>
+                    <li><a href="#">Product Pricing Models</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Enterprise Services</h4>
+                <ul>
+                    <li><a href="#">Custom Software Dev</a></li>
+                    <li><a href="#">IT & Cloud Consulting</a></li>
+                    <li><a href="#">Outsourced BPO Solutions</a></li>
+                    <li><a href="#">Careers & Recruitment</a></li>
+                    <li><a href="#">Success Testimonials</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 NexusAI. Powered by CSS & HTML5. All rights reserved.</p>
+            <a href="#" class="move-top">Move to Top &uarr;</a>
+        </div>
+    </footer>
+
+    <!-- Relative JS Link -->
+    <script src="../script.js"></script>
+</body>
+</html>

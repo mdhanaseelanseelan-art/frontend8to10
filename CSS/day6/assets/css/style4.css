@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.card1 {
+    background-color: #f6f600;
+    color: rgb(11, 9, 4);
+    padding: 20px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card2 {
+    position: relative;
+    top: 240px;
+    left: 520px; 
+    background-color: #f6f600;
+    color: rgb(11, 9, 4);
+    padding: 20px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.card3 {
+    background-color: red;
+    color: rgb(11, 9, 4);
+    padding: 20px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardbox {
+    display: flex;
+    gap: 20px;
+}

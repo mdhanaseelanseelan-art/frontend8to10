@@ -1,0 +1,61 @@
+1. What is a Semantic Tag?
+Semantic tag clearly describe the purpose of content inside them. When developers, browsers, search engine and screen readers see a semantic tag, they easiy understand what kind of contact it contains.
+2. Why are Semantic Tags Important?
+Semantic tags are important because they improve accessibility, boost search engine optimization (SEO), and make code cleaner and easier to maintain. Better Accessibility: Assistive technologies like screen readers rely on elements such as <nav>, <header>, and <footer> to understand page structure and help users with visual impairments navigate effectively.Improved SEO: Search engines use semantic elements to clearly identify the hierarchy and relevance of content, which helps index web pages accurately for search queries. 
+3. Name Five Semantic Tags?
+<header>: Represents introductory content or a container for a set of navigational links.
+<nav>: Defines a block of navigation links such as menus or table of contents.
+<article>: Encapsulates a self-contained composition, like a blog post, news story, or comment, that can be distributed independently.
+<section>: Defines a thematic grouping of content, typically with a heading.
+4. Name Two Non-Semantic Tags?
+<div>: A block-level container used to group larger sections of code or layout elements together.
+<span>: An inline container used to group small pieces of text or inline elements for styling.
+5. What is the Difference Between Semantic and Non-Semantic Tags?
+Semantic
+
+Semantic                    Non-semantic            
+
+Meaningful                  No Meaning
+Better SEO                  Less SEO
+Better Accessibility        Less Accessibility
+Easier to Read              Harder to Understand
+header, nav, section        div, span
+6. What is the Purpose of the Paragraph Tag?
+The <p> tag in HTML is used to define a paragraph of text. It structures text content into distinct, readable blocks on a webpage. 
+Block-Level Element
+Automatic Spacing
+Space Collapsing
+Nesting Rules
+7. Is Paragraph a Block-Level Element?
+YES, paragraph is a block level element.
+8. Which Tag Represents Main Content?
+The HTML <main> tag represents the primary, unique content of a document. 
+Core Content
+exclusive
+uniqueness
+Accessibility
+9. Which Tag Represents Navigation?
+The HTML <nav> tag represents a section of a page intended for navigation links. 
+purpose
+accessibility
+SEO benefits
+10. Which Tag Represents Independent Content?
+The HTML <article> tag represents a self-contained, independent piece of content. 
+Blog post
+new stories
+user comments.
+
+
+              
+
+                            
+
+
+
+
+
+
+
+
+
+

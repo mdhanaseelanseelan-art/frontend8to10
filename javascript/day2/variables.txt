@@ -1,0 +1,210 @@
+             VARIABLES
+
+1.  var courseName="fullstack";
+    console.log(courseName)
+
+2.  var firstName="dhana";
+    console.log(firstName)
+
+3.  var phoneNumber="xxxx";
+    console.log(phoneNumber)
+
+4.  var confirmPassward="dhana";
+    console.log(confirmPassward)
+
+5.  var  employeeName="Mukund";
+    console.log(employeeName)
+
+6.  var fatherName="mari";
+    console.log(fatherName)
+
+7.  var userphone="Samsung";
+    console.log(userPhone)
+
+8.  var userCity="spr";
+    console.log(userCity)
+
+9.  var loginStatus="update"
+    console.log(loginStatus)
+
+10. var productName="phone";
+    console.log(productName)
+
+11. var productStock="current";
+    console.log(productStock)
+
+12. var productCategory="food";
+    console.log(productCategory)
+
+13. var paymentMethod="gpay";
+    console.log(paymentMethod)
+
+14. var cartItems="four";
+    console.log(cartItems)
+
+15. var subjectName="chem";
+    console.log(subjectName)
+
+16. var taxInvoice="paid";
+    console.log(taxInvoice)
+
+17. var orderDate="yyxxyyyy";
+    console.log(orderDate)
+
+18. var herName="dhivya";
+    console.log(herName) 
+
+
+
+             LET
+
+
+1.  let courseName = 4545
+    console.log(courseName)
+
+2.  let firstName = 1234
+    console.log(firstName)
+
+3.  let phoneNumber = 9876
+    console.log(phoneNumber)
+
+4.  let confirmPassward = 5678
+    console.log(confirmPassward)
+
+5.  let employeeName = 1111
+    console.log(employeeName)
+
+6.  let fatherName = 2222
+    console.log(fatherName)
+
+7.  let userphone = 3333
+    console.log(userphone)
+
+8.  let userCity = 4444
+    console.log(userCity)
+
+9.  let loginStatus = 5555
+    console.log(loginStatus)
+
+10. let productName = 6666
+    console.log(productName)
+
+11. let productStock = 7777
+    console.log(productStock)
+
+12. let productCategory = 8888
+    console.log(productCategory)
+
+13. let paymentMethod = 9999
+    console.log(paymentMethod)
+
+14. let cartItems = 1010
+    console.log(cartItems)
+
+15. let subjectName = 2020
+    console.log(subjectName)
+
+16. let taxInvoice = 3030
+    console.log(taxInvoice)
+
+17. let orderDate = 4040
+    console.log(orderDate)
+
+18. let herName = 5050
+    console.log(herName)
+
+
+
+             BOOLEAN
+
+
+1.  const courseName = true;
+    console.log(courseName);
+
+2.  const firstName = false;
+    console.log(firstName);
+
+3.  const phoneNumber = true;
+    console.log(phoneNumber);
+
+4.  const confirmPassward = false;
+    console.log(confirmPassward);
+
+5.  const employeeName = true;
+    console.log(employeeName);
+
+6.  const fatherName = false;
+    console.log(fatherName);
+
+7.  const userphone = true;
+    console.log(userphone);
+
+8.  const userCity = false;
+    console.log(userCity);
+
+9.  const loginStatus = true;
+    console.log(loginStatus);
+
+10. const productName = false;
+    console.log(productName);
+
+11. const productStock = true;
+    console.log(productStock);
+
+12. const productCategory = false;
+    console.log(productCategory);
+
+13. const paymentMethod = true;
+    console.log(paymentMethod);
+
+14. const cartItems = false;
+    console.log(cartItems);
+
+15. const subjectName = true;
+    console.log(subjectName);
+
+16. const taxInvoice = false;
+    console.log(taxInvoice);
+
+17. const orderDate = true;
+    console.log(orderDate);
+
+18. const herName = false;
+    console.log(herName);
+
+
+
+        NULL
+
+
+
+1. var studentMobile = null;
+   console.log(studentMobile);
+
+2. var studentName = null;
+   console.log(studentName);
+
+3. var studentEmail = null;
+   console.log(studentEmail);
+
+4. var studentAge = null;
+   console.log(studentAge);
+
+5. var studentAddress = null;
+   console.log(studentAddress);
+
+6. var studentCourse = null;
+   console.log(studentCourse);
+
+7. var studentCollege = null;
+   console.log(studentCollege);
+
+8. var studentMark = null;
+   console.log(studentMark);
+
+9. var studentRollNumber = null;
+   console.log(studentRollNumber);
+
+10. var studentDepartment = null;
+    console.log(studentDepartment);
+           

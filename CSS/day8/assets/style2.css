@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    text-decoration: none;
+}
+.std{
+    margin: 40px;
+}
+
+.std label{
+    display: inline-block;
+    width:120px;
+}
+.std input{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.std input:focus{
+    background-color: rgba(176, 180, 184, 0.74);
+    border-color: darkblue;
+    outline: none;
+}

@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    text-decoration: none;
+}
+
+.BA{
+    width: fit-content;
+    margin: 30px auto;
+}
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px ;
+    gap: 7px;
+
+}
+.head::before{
+    content:"⭐";
+    margin-right: auto;
+}
+.head::after{
+    content: "✅";
+    margin-left: auto;
+
+}

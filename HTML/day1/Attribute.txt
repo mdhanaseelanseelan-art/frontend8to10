@@ -1,0 +1,31 @@
+1.What is an Attribute?
+  An attributes provides additional information about an html element attributes are always written inside the opening tag.
+2.What is the Syntax of an Attribute?
+  syntax:
+  <tagname attribute="value"></tagname>
+3.What is the Difference Between id and class?
+  The main difference is that an id uniquely identifies a single element on a webpage, while a class can be reused across multiple elements. 
+4.What is href?
+  In HTML, href stands for Hypertext Reference. It is an attribute used to specify the URL or destination of a hyperlink or connected resource. Without the href attribute, an HTML tag
+  cannot  function as a clickable link. 
+5.What is src?
+  In HTML, src stands for "source." It is an attribute used to specify the URL or file path of an external resource that a browser needs to embed, display, or execute directly within a web page. 
+6.What is alt?
+alt is a attribute name The alt attribute in HTML stands for "alternate text" and is used to provide a textual description of an image. It is embedded directly inside the HTML tag (most commonly the <img> tag) to describe the visual content. 
+7.What is placeholder?
+  In HTML, the placeholder attribute specifies a short hint or example text displayed inside an empty form input field before a user enters a value. It typically appears as light grey, muted text and disappears automatically as soon as the user starts typing.
+8.What is required?
+  The word "required" in HTML can refer to two completely different things: the required attribute used to make form fields mandatory, or the required structural tags needed to build a valid web page.
+9.What are Global Attributes?
+the word global attributes can used almost every html element.
+ex. <h1 id="heading" class="title></h1>
+10.What are Local Attributes?
+A local attribute is a data property, characteristic, or setting that applies exclusively to a single, specific object, component, or context rather than being shared globally. 
+a tag
+target
+download
+img
+alt
+height
+width 
+

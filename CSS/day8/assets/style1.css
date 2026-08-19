@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    text-decoration: none;
+}
+.std{
+    text-align: center;
+}
+.students{
+    margin: 30px;
+}
+.students li:first-child{
+    color: rgb(94, 216, 18);
+    
+}
+
+.students li:last-child{
+    color: rgba(122, 219, 24, 0.826);
+}

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+}
+
+
+.parent {
+    position: relative;
+    display: inline-block;
+    font-size: 80px;
+}
+
+
+.badge {
+    position:fixed;
+    top: 5;
+    background-color: red;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    padding: 5px ;
+    border-radius: 50px;
+}
