@@ -148,4 +148,43 @@ CONST
 40. const lastName;
 41. const loggedIn;
 42. const studentName;  
+
+
+
+
+What is JavaScript?
+
+javascript is a highly programming language to create webpage interactive and dynamic. it allows us to add features like button clicks, from validation , animation and dynamic contents.
+
+
+What is a Variable?
+A variable is a named storage location in memory that is used to store and manage data in a program. In JavaScript, we can declare variables using var, let, or const. for example,
+
+let studentName = "Dhanaseelan";
+
+what is variable declaration?
+
+Variable declaration means creating or defining a variable in a program using a declaration keyword such as var, let, or const. It tells JavaScript that a variable exists.
+var username;
+
+what is initialization?
+Initialization is the process of assigning an initial value to a variable when it is declared
+let userName="wugkyug";
+
+what is assingnment operator?
+An assignment operator is used to assign a value to a variable. The most commonly used assignment operator in JavaScript is the equal sign =.
+
+ What are var, let and const?  
+
+var, let, and const are JavaScript keywords used to declare variables. They differ mainly in their scope and whether their values can be reassigned
+var name = "John";
+let age = 20;
+const country = "India";
+var → Function-scoped and can be redeclared and reassigned.
+let → Block-scoped and can be reassigned but not redeclared in the same scope.
+const → Block-scoped and cannot be reassigned or redeclared.
+
+
+var is function-scoped and can be redeclared and reassigned. let is block-scoped and can be reassigned but not redeclared. const is block-scoped and cannot be reassigned or redeclared.
+
      
