@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Day 5 - Workspace</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 40px 20px; background: #f8fafc; color: #1e293b; display: flex; justify-content: center; }
+        .container { max-width: 650px; width: 100%; background: #fff; padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        .badge { display: inline-block; background: #f3e8ff; color: #7c3aed; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
+        h1 { margin: 0 0 10px; font-size: 24px; }
+        p { color: #64748b; line-height: 1.6; }
+        .code-box { background: #0f172a; color: #c4b5fd; padding: 20px; border-radius: 10px; font-family: Consolas, monospace; font-size: 14px; margin: 20px 0; }
+        .task-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+        .task-nav a { padding: 8px 14px; background: #f1f5f9; border-radius: 8px; text-decoration: none; color: #334155; font-size: 13px; font-weight: 600; }
+        .task-nav a:hover { background: #f3e8ff; color: #7c3aed; }
+        .back-btn { display: inline-block; margin-top: 15px; color: #7c3aed; font-weight: bold; text-decoration: none; }
+        .back-btn:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">DAY 05 • SQL WORKSPACE</span>
+        <h1>SQL Day 5: Aggregate Functions</h1>
+        <p>This workspace is ready for your SQL practice tasks. Open this file in your editor to add your SQL queries!</p>
+        <div class="task-nav">
+            <a href="task1.html">Task 1: Salary Summaries</a>
+            <a href="task2.html">Task 2: Row Counting</a>
+        </div>
+        <div class="code-box">
+            SELECT COUNT(*) AS total_employees,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AVG(salary) AS avg_salary,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAX(salary) AS highest_salary<br>
+            FROM employees;
+        </div>
+        <a href="../index.html" class="back-btn">← Back to SQL Track</a>
+    </div>
+</body>
+</html>

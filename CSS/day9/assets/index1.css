@@ -1,0 +1,25 @@
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+
+    /* Transition */
+    transition: 0.5s;
+}
+
+/* Hover Effect */
+button:hover {
+    background-color: black;
+    color: yellow;
+    transform: scale(1.1);
+}  

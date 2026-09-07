@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background-color: #444;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 60px 20px;
+        }
+
+        .hero img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #222;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            margin-bottom: 30px;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            background-color: white;
+            border: 2px solid #333;
+            padding: 20px 30px;
+            border-radius: 10px;
+        }
+
+        /* Projects */
+        .projects {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .project {
+            width: 280px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        .project h3 {
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* =========================
+           TABLET
+           ========================= */
+        @media (min-width: 601px) and (max-width: 1024px) {
+
+            body {
+                background-color: lightblue;
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+           ========================= */
+        @media (max-width: 600px) {
+
+            body {
+                background-color: lightgreen;
+            }
+
+            /* Navigation becomes column */
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            /* Hero becomes column */
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .hero-text h2 {
+                font-size: 28px;
+            }
+
+            .skills {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skill {
+                width: 80%;
+            }
+
+            .projects {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>My Portfolio</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+
+        <div>
+            <img src="https://via.placeholder.com/250" alt="Profile Image">
+        </div>
+
+        <div class="hero-text">
+            <h2>Hello, I'm Dhanaseelan</h2>
+            <p>
+                I am a Software Developer interested in creating
+                responsive and user-friendly websites.
+            </p>
+            <button>View Projects</button>
+        </div>
+
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2>My Skills</h2>
+
+        <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">Bootstrap</div>
+            <div class="skill">Tailwind CSS</div>
+            <div class="skill">JavaScript</div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2>My Projects</h2>
+
+        <div class="projects">
+
+            <div class="project">
+                <h3>E-Commerce Website</h3>
+                <p>Responsive website using HTML and CSS.</p>
+            </div>
+
+            <div class="project">
+                <h3>Student Dashboard</h3>
+                <p>Dashboard created using Bootstrap.</p>
+            </div>
+
+            <div class="project">
+                <h3>JavaScript Practice</h3>
+                <p>Website for practicing JavaScript programs.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: example@gmail.com</p>
+        <p>Phone: +91 98765 43210</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 My Portfolio</p>
+    </footer>
+
+</body>
+</html>

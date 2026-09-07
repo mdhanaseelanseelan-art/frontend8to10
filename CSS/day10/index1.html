@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Cards</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Flexbox Container */
+        .student-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Student Card */
+        .student-card {
+            width: calc(33.33% - 20px);
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px gray;
+        }
+
+        .student-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .student-card h2 {
+            margin: 10px 0;
+        }
+
+        .student-card p {
+            margin: 8px 0;
+        }
+
+        /* Tablet - 2 cards */
+        @media (max-width: 768px) {
+            .student-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        /* Mobile - 1 card */
+        @media (max-width: 576px) {
+            .student-card {
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Profiles</h1>
+
+    <div class="student-container">
+
+        <div class="student-card">
+            <img src="https://i.pravatar.cc/150?img=12">
+            <h2>Arun Kumar</h2>
+            <p><b>Course:</b> B.E Computer Science</p>
+            <p><b>Mobile:</b> 9876543210</p>
+        </div>
+
+        <div class="student-card">
+            <img src="https://i.pravatar.cc/150?img=13">
+            <h2>Priya</h2>
+            <p><b>Course:</b> B.Sc Computer Science</p>
+            <p><b>Mobile:</b> 9876543211</p>
+        </div>
+
+        <div class="student-card">
+            <img src="https://i.pravatar.cc/150?img=14">
+            <h2>Rahul</h2>
+            <p><b>Course:</b> BCA</p>
+            <p><b>Mobile:</b> 9876543212</p>
+        </div>
+
+        <div class="student-card">
+            <img src="https://i.pravatar.cc/150?img=15">
+            <h2>Divya</h2>
+            <p><b>Course:</b> B.Tech IT</p>
+            <p><b>Mobile:</b> 9876543213</p>
+        </div>
+
+        <div class="student-card">
+            <img src="https://i.pravatar.cc/150?img=16">
+            <h2>Vijay</h2>
+            <p><b>Course:</b> B.E ECE</p>
+            <p><b>Mobile:</b> 9876543214</p>
+        </div>
+
+        <div class="student-card">
+            <img src="https://i.pravatar.cc/150?img=17">
+            <h2>Meena</h2>
+            <p><b>Course:</b> B.Sc IT</p>
+            <p><b>Mobile:</b> 9876543215</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

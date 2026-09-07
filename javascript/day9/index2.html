@@ -1,0 +1,48 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Even Numbers</title>
+</head>
+
+<body>
+
+    <h1>Even Numbers from 1 to n</h1>
+
+    <p id="result"></p>
+
+    <script>
+
+        
+        function printEvenNumbers(n) {
+
+            let output = "";
+
+            // for loop from 1 to n
+            for (let i = 1; i <= n; i++) {
+
+                if (i % 2 === 0) {
+                    output += i + " ";
+                }
+
+            }
+
+            return output;
+        }
+
+        
+        let result = printEvenNumbers(20);
+
+        
+        document.getElementById("result").innerHTML = result;
+
+    </script>
+
+</body>
+
+</html>
+```

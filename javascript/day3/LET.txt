@@ -1,0 +1,120 @@
+1. let a = 10;
+   a += 20;
+   console.log(a);
+    Output: 30
+
+2. let marks = 50;
+   marks += 10;
+   console.log(marks);
+    Output: 60
+
+3. let salary = 20000;
+   salary += 5000;
+   console.log(salary);
+    Output: 25000
+
+4. let age = 18;
+   age += 2;
+   console.log(age);
+   Output: 20
+
+5. let score = 75;
+   score += 15;
+   console.log(score);
+   Output: 90
+
+6. let number = 100;
+   number += 50;
+   console.log(number);
+    Output: 150
+
+7. let price = 500;
+   price += 100;
+   console.log(price);
+   Output: 600
+
+8. let count = 5;
+   count += 10;
+   console.log(count);
+    Output: 15
+
+9. let balance = 1000;
+   balance += 500;
+   console.log(balance);
+    Output: 1500
+
+10. let students = 30;
+    students += 20;
+    console.log(students);
+     Output: 50
+
+11. let points = 40;
+    points += 25;
+    console.log(points);
+    Output: 65
+
+12. let distance = 100;
+    distance += 50;
+    console.log(distance);
+     Output: 150
+
+13. let apples = 10;
+    apples += 15;
+    console.log(apples);
+     Output: 25
+
+14. let books = 20;
+    books += 10;
+    console.log(books);
+     Output: 30
+
+15. let tickets = 25;
+    tickets += 5;
+    console.log(tickets);
+     Output: 30
+
+16. let days = 7;
+    days += 3;
+    console.log(days);
+     Output: 10
+
+17. let hours = 8;
+    hours += 4;
+    console.log(hours);
+     Output: 12
+
+18. let pages = 50;
+    pages += 25;
+    console.log(pages);
+    Output: 75
+
+19. let coins = 100;
+    coins += 50;
+    console.log(coins);
+     Output: 150
+
+20. let products = 15;
+    products += 10;
+    console.log(products);
+     Output: 25
+
+21. let water = 2;
+    water += 3;
+    console.log(water);
+     Output: 5
+
+22. let chairs = 12;
+    chairs += 8;
+    console.log(chairs);
+     Output: 20
+
+23. let laptops = 5;
+    laptops += 5;
+    console.log(laptops);
+    Output: 10
+
+24. let employees = 40;
+    employees += 10;
+    console.log(employees);
+     Output: 50
+

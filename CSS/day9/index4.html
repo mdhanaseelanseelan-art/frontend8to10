@@ -1,0 +1,92 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Cards</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .students {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .card {
+            width: 220px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px gray;
+
+            /* Smooth animation */
+            transition: 0.5s;
+        }
+
+        /* Zoom + Move Up */
+        .card:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .card h2 {
+            margin: 15px 0 10px;
+        }
+
+        .card p {
+            margin: 8px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student Profiles</h1>
+
+    <div class="students">
+
+        <!-- Student 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/120" alt="Student Image">
+            <h2>Arun</h2>
+            <p><b>Course:</b> B.E Computer Science</p>
+            <p><b>Mobile:</b> 9876543210</p>
+        </div>
+
+        <!-- Student 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/120" alt="Student Image">
+            <h2>Priya</h2>
+            <p><b>Course:</b> B.Sc Computer Science</p>
+            <p><b>Mobile:</b> 9876543211</p>
+        </div>
+
+        <!-- Student 3 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/120" alt="Student Image">
+            <h2>Karthik</h2>
+            <p><b>Course:</b> BCA</p>
+            <p><b>Mobile:</b> 9876543212</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+```
+

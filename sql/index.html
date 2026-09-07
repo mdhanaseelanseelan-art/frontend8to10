@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Track - Frontend Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 72px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #101828;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            opacity: 0.5;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #dbe4f0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            transform: translateX(-3px);
+        }
+
+        /* HERO BANNER */
+        .banner {
+            padding: 55px 7% 45px;
+            background: linear-gradient(135deg, #101828, #2e1065, #7c3aed);
+            color: white;
+        }
+
+        .banner-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.35);
+            border: 1px solid rgba(196, 181, 253, 0.4);
+            color: #ede9fe;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .banner h1 {
+            font-size: clamp(34px, 4.5vw, 50px);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .banner p {
+            color: #ede9fe;
+            margin-top: 10px;
+            font-size: 16px;
+            max-width: 620px;
+        }
+
+        .stats-badge-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 24px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-card .lbl {
+            font-size: 12px;
+            color: #ddd6fe;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* CONTROLS */
+        .controls-container {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding: 0 7%;
+            width: 100%;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #d0d7e2;
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(16, 24, 40, 0.04);
+            gap: 12px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            color: #172033;
+        }
+
+        .search-box input::placeholder {
+            color: #98a2b3;
+        }
+
+        /* GRID */
+        main {
+            max-width: 1200px;
+            margin: 30px auto 70px;
+            padding: 0 7%;
+            flex: 1;
+            width: 100%;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        /* DAY CARD */
+        .day-card {
+            background: white;
+            border: 1px solid #e4e8ef;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px rgba(16, 24, 40, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f2f7;
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        .day-badge {
+            background: #f3e8ff;
+            color: #7c3aed;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .task-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667085;
+        }
+
+        .day-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101828;
+            margin-bottom: 6px;
+        }
+
+        .day-desc {
+            font-size: 13px;
+            color: #667085;
+            margin-bottom: 18px;
+            flex-grow: 0;
+        }
+
+        /* TASK LINKS */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .task-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e9edf3;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #344054;
+            transition: all 0.2s ease;
+        }
+
+        .task-link:hover {
+            background: #f3e8ff;
+            border-color: #d8b4fe;
+            color: #7c3aed;
+            transform: translateX(4px);
+        }
+
+        .task-tag {
+            font-size: 11px;
+            font-weight: 700;
+            background: #eaecf0;
+            color: #475467;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-left: 8px;
+        }
+
+        .task-link:hover .task-tag {
+            background: #ddd6fe;
+            color: #5b21b6;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #101828;
+            color: #98a2b3;
+            font-size: 13px;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-badge-group {
+                width: 100%;
+            }
+            .stat-card {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            Frontend<span>Hub</span>
+        </div>
+        <a href="../index.html" class="back-link">
+            ← Back to Hub
+        </a>
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner-inner">
+            <div>
+                <span class="badge">Track Overview</span>
+                <h1>SQL & Databases Practice Collection</h1>
+                <p>Relational databases and query mastery: schema design, table management, CRUD operations, joins, aggregations, subqueries, indexes, and transactions.</p>
+            </div>
+            <div class="stats-badge-group">
+                <div class="stat-card">
+                    <div class="num">15</div>
+                    <div class="lbl">Active Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">45+</div>
+                    <div class="lbl">Queries & Tasks</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH & FILTER -->
+    <div class="controls-container">
+        <div class="search-box">
+            <span style="font-size: 18px;">🔍</span>
+            <input type="text" id="taskSearch" placeholder="Search days, tables, select, joins, group by, indexes (e.g. 'joins', 'day 8', 'select')...">
+        </div>
+    </div>
+
+    <!-- MAIN TASKS GRID -->
+    <main>
+        <div class="days-grid" id="daysGrid">
+
+            <!-- DAY 1 -->
+            <div class="day-card" data-search="day 1 database basics create table datatypes ddl schema">
+                <div class="day-header">
+                    <span class="day-badge">DAY 01 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Database Basics & DDL</h3>
+                <p class="day-desc">CREATE DATABASE, CREATE TABLE, data types (VARCHAR, INT, DATE), and DROP TABLE.</p>
+                <div class="task-list">
+                    <a href="day1/index.html" class="task-link">
+                        <span>Day 1 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day1/task1.html" class="task-link">
+                        <span>Task 1: Creating Student & Course Tables</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day1/task2.html" class="task-link">
+                        <span>Task 2: Alter Table & Add Columns</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="day-card" data-search="day 2 insert update delete dml records row operations">
+                <div class="day-header">
+                    <span class="day-badge">DAY 02 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Data Manipulation (DML)</h3>
+                <p class="day-desc">INSERT INTO records, UPDATE row data, DELETE rows, and TRUNCATE practice.</p>
+                <div class="task-list">
+                    <a href="day2/index.html" class="task-link">
+                        <span>Day 2 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day2/task1.html" class="task-link">
+                        <span>Task 1: Bulk Inserting Records</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day2/task2.html" class="task-link">
+                        <span>Task 2: Conditional Update and Delete</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="day-card" data-search="day 3 select where order by limit distinct queries">
+                <div class="day-header">
+                    <span class="day-badge">DAY 03 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">SELECT & Filtering Data</h3>
+                <p class="day-desc">SELECT statements, column projections, WHERE clauses, ORDER BY, and LIMIT.</p>
+                <div class="task-list">
+                    <a href="day3/index.html" class="task-link">
+                        <span>Day 3 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day3/task1.html" class="task-link">
+                        <span>Task 1: Basic SELECT & Column Aliases</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day3/task2.html" class="task-link">
+                        <span>Task 2: Filter with WHERE and ORDER BY</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="day-card" data-search="day 4 operators in between like wildcards pattern matching">
+                <div class="day-header">
+                    <span class="day-badge">DAY 04 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Logical Operators & Wildcards</h3>
+                <p class="day-desc">AND, OR, NOT, IN, BETWEEN, LIKE with wildcards (% and _), and IS NULL.</p>
+                <div class="task-list">
+                    <a href="day4/index.html" class="task-link">
+                        <span>Day 4 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day4/task1.html" class="task-link">
+                        <span>Task 1: Pattern Search with LIKE</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day4/task2.html" class="task-link">
+                        <span>Task 2: Range Filtering with BETWEEN & IN</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 5 -->
+            <div class="day-card" data-search="day 5 aggregate count sum avg min max functions statistics">
+                <div class="day-header">
+                    <span class="day-badge">DAY 05 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Aggregate Functions</h3>
+                <p class="day-desc">COUNT, SUM, AVG, MIN, MAX, calculating summaries and statistics.</p>
+                <div class="task-list">
+                    <a href="day5/index.html" class="task-link">
+                        <span>Day 5 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day5/task1.html" class="task-link">
+                        <span>Task 1: Salary & Sales Statistics</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day5/task2.html" class="task-link">
+                        <span>Task 2: Counting Filtered Rows</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 6 -->
+            <div class="day-card" data-search="day 6 group by having summary reports groupings">
+                <div class="day-header">
+                    <span class="day-badge">DAY 06 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">GROUP BY & HAVING</h3>
+                <p class="day-desc">Categorizing results with GROUP BY, and filtering grouped output with HAVING.</p>
+                <div class="task-list">
+                    <a href="day6/index.html" class="task-link">
+                        <span>Day 6 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day6/task1.html" class="task-link">
+                        <span>Task 1: Department-wise Salary Totals</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day6/task2.html" class="task-link">
+                        <span>Task 2: Filtering Groups with HAVING</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 7 -->
+            <div class="day-card" data-search="day 7 constraints primary key foreign key unique not null check">
+                <div class="day-header">
+                    <span class="day-badge">DAY 07 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Constraints & Keys</h3>
+                <p class="day-desc">PRIMARY KEY, FOREIGN KEY relationships, UNIQUE, NOT NULL, CHECK constraints.</p>
+                <div class="task-list">
+                    <a href="day7/index.html" class="task-link">
+                        <span>Day 7 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day7/task1.html" class="task-link">
+                        <span>Task 1: Relational Schema with Foreign Keys</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day7/task2.html" class="task-link">
+                        <span>Task 2: CHECK & UNIQUE Constraints</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 8 -->
+            <div class="day-card" data-search="day 8 inner join table joins aliases relational queries">
+                <div class="day-header">
+                    <span class="day-badge">DAY 08 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">INNER JOIN</h3>
+                <p class="day-desc">Joining matching records across two or more tables with table aliases.</p>
+                <div class="task-list">
+                    <a href="day8/index.html" class="task-link">
+                        <span>Day 8 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day8/task1.html" class="task-link">
+                        <span>Task 1: Customer Orders Inner Join</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day8/task2.html" class="task-link">
+                        <span>Task 2: Multi-table Student Enrollments</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 9 -->
+            <div class="day-card" data-search="day 9 left join right join full outer join null handling">
+                <div class="day-header">
+                    <span class="day-badge">DAY 09 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">OUTER JOINS</h3>
+                <p class="day-desc">LEFT OUTER JOIN, RIGHT JOIN, FULL OUTER JOIN, handling NULL values.</p>
+                <div class="task-list">
+                    <a href="day9/index.html" class="task-link">
+                        <span>Day 9 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day9/task1.html" class="task-link">
+                        <span>Task 1: Customers Without Orders (LEFT JOIN)</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day9/task2.html" class="task-link">
+                        <span>Task 2: Cross and Self Joins</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 10 -->
+            <div class="day-card" data-search="day 10 subqueries nested queries exists correlated subquery">
+                <div class="day-header">
+                    <span class="day-badge">DAY 10 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Subqueries & Nested Queries</h3>
+                <p class="day-desc">Subqueries in WHERE, FROM, SELECT clauses, EXISTS and NOT EXISTS.</p>
+                <div class="task-list">
+                    <a href="day10/index.html" class="task-link">
+                        <span>Day 10 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day10/task1.html" class="task-link">
+                        <span>Task 1: Above Average Salary Subquery</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day10/task2.html" class="task-link">
+                        <span>Task 2: Correlated Subquery Practice</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 11 -->
+            <div class="day-card" data-search="day 11 views indexes performance optimization create view">
+                <div class="day-header">
+                    <span class="day-badge">DAY 11 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Views & Indexes</h3>
+                <p class="day-desc">Creating virtual tables with VIEW, improving query speed with INDEX.</p>
+                <div class="task-list">
+                    <a href="day11/index.html" class="task-link">
+                        <span>Day 11 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day11/task1.html" class="task-link">
+                        <span>Task 1: High Earners Reporting View</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day11/task2.html" class="task-link">
+                        <span>Task 2: Creating and Testing Indexes</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 12 -->
+            <div class="day-card" data-search="day 12 transactions acid commit rollback savepoint atomicity">
+                <div class="day-header">
+                    <span class="day-badge">DAY 12 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Transactions & ACID</h3>
+                <p class="day-desc">BEGIN TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT, and ACID principles.</p>
+                <div class="task-list">
+                    <a href="day12/index.html" class="task-link">
+                        <span>Day 12 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day12/task1.html" class="task-link">
+                        <span>Task 1: Money Transfer Transaction</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day12/task2.html" class="task-link">
+                        <span>Task 2: Savepoints & Rollback Test</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 13 -->
+            <div class="day-card" data-search="day 13 stored procedures triggers functions automation">
+                <div class="day-header">
+                    <span class="day-badge">DAY 13 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Procedures & Triggers</h3>
+                <p class="day-desc">Automating database tasks with stored procedures, input parameters, and triggers.</p>
+                <div class="task-list">
+                    <a href="day13/index.html" class="task-link">
+                        <span>Day 13 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day13/task1.html" class="task-link">
+                        <span>Task 1: Stored Procedure for User Signup</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day13/task2.html" class="task-link">
+                        <span>Task 2: Audit Log Automatic Trigger</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 14 -->
+            <div class="day-card" data-search="day 14 normalization 1nf 2nf 3nf schema design database modeling">
+                <div class="day-header">
+                    <span class="day-badge">DAY 14 • SQL</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Database Normalization</h3>
+                <p class="day-desc">1NF, 2NF, 3NF normalization rules, reducing redundancy and anomalies.</p>
+                <div class="task-list">
+                    <a href="day14/index.html" class="task-link">
+                        <span>Day 14 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day14/task1.html" class="task-link">
+                        <span>Task 1: Decomposing Unnormalized Table</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day14/task2.html" class="task-link">
+                        <span>Task 2: Designing 3NF E-Commerce Schema</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 15 -->
+            <div class="day-card" data-search="day 15 capstone database project complete schema queries reports">
+                <div class="day-header">
+                    <span class="day-badge">DAY 15 • CAPSTONE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">SQL Capstone Database</h3>
+                <p class="day-desc">End-to-end relational database: schema creation, mock data, and complex reports.</p>
+                <div class="task-list">
+                    <a href="day15/index.html" class="task-link">
+                        <span>Day 15 Capstone Workspace</span>
+                        <span class="task-tag">Capstone</span>
+                    </a>
+                    <a href="day15/task1.html" class="task-link">
+                        <span>Task 1: Full Database Initialization</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day15/task2.html" class="task-link">
+                        <span>Task 2: Analytical & Reporting Queries</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Frontend Learning Hub • SQL Practice Track • All tasks linked directly</p>
+    </footer>
+
+    <!-- INTERACTIVE SEARCH SCRIPT -->
+    <script>
+        const searchInput = document.getElementById('taskSearch');
+        const cards = document.querySelectorAll('.day-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase() + ' ' + (card.getAttribute('data-search') || '');
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

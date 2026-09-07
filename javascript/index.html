@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Track - Frontend Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 72px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #101828;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            opacity: 0.5;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #dbe4f0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            transform: translateX(-3px);
+        }
+
+        /* HERO BANNER */
+        .banner {
+            padding: 55px 7% 45px;
+            background: linear-gradient(135deg, #101828, #362908, #8a6500);
+            color: white;
+        }
+
+        .banner-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(138, 101, 0, 0.35);
+            border: 1px solid rgba(255, 213, 100, 0.4);
+            color: #fef08a;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .banner h1 {
+            font-size: clamp(34px, 4.5vw, 50px);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .banner p {
+            color: #fef9c3;
+            margin-top: 10px;
+            font-size: 16px;
+            max-width: 620px;
+        }
+
+        .stats-badge-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 24px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-card .lbl {
+            font-size: 12px;
+            color: #fef08a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* CONTROLS */
+        .controls-container {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding: 0 7%;
+            width: 100%;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #d0d7e2;
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(16, 24, 40, 0.04);
+            gap: 12px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            color: #172033;
+        }
+
+        .search-box input::placeholder {
+            color: #98a2b3;
+        }
+
+        /* GRID */
+        main {
+            max-width: 1200px;
+            margin: 30px auto 70px;
+            padding: 0 7%;
+            flex: 1;
+            width: 100%;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        /* DAY CARD */
+        .day-card {
+            background: white;
+            border: 1px solid #e4e8ef;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px rgba(16, 24, 40, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f2f7;
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        .day-badge {
+            background: #fff8df;
+            color: #8a6500;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .task-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667085;
+        }
+
+        .day-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101828;
+            margin-bottom: 6px;
+        }
+
+        .day-desc {
+            font-size: 13px;
+            color: #667085;
+            margin-bottom: 18px;
+            flex-grow: 0;
+        }
+
+        /* TASK LINKS */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .task-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e9edf3;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #344054;
+            transition: all 0.2s ease;
+        }
+
+        .task-link:hover {
+            background: #fff8df;
+            border-color: #fde047;
+            color: #8a6500;
+            transform: translateX(4px);
+        }
+
+        .task-tag {
+            font-size: 11px;
+            font-weight: 700;
+            background: #eaecf0;
+            color: #475467;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-left: 8px;
+        }
+
+        .task-link:hover .task-tag {
+            background: #fde047;
+            color: #713f12;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #101828;
+            color: #98a2b3;
+            font-size: 13px;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-badge-group {
+                width: 100%;
+            }
+            .stat-card {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            Frontend<span>Hub</span>
+        </div>
+        <a href="../index.html" class="back-link">
+            ← Back to Hub
+        </a>
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner-inner">
+            <div>
+                <span class="badge">Track Overview</span>
+                <h1>JavaScript Practice Collection</h1>
+                <p>Interactive web development: core syntax, data types, logic operators, loops, functions, array methods, DOM manipulation, and interactive projects.</p>
+            </div>
+            <div class="stats-badge-group">
+                <div class="stat-card">
+                    <div class="num">20</div>
+                    <div class="lbl">Active Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">60+</div>
+                    <div class="lbl">Tasks & Workspaces</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH & FILTER -->
+    <div class="controls-container">
+        <div class="search-box">
+            <span style="font-size: 18px;">🔍</span>
+            <input type="text" id="taskSearch" placeholder="Search days, dom, loops, functions, events, arrays (e.g. 'dom', 'day 3', 'functions')...">
+        </div>
+    </div>
+
+    <!-- MAIN TASKS GRID -->
+    <main>
+        <div class="days-grid" id="daysGrid">
+
+            <!-- DAY 1 -->
+            <div class="day-card" data-search="day 1 var let const variables scope types notes">
+                <div class="day-header">
+                    <span class="day-badge">DAY 01</span>
+                    <span class="task-count">1 Reference</span>
+                </div>
+                <h3 class="day-title">Variables & Scopes</h3>
+                <p class="day-desc">Core definitions: var vs let vs const, scopes, and hoisting notes.</p>
+                <div class="task-list">
+                    <a href="day1/var,let,const.txt" class="task-link">
+                        <span>Variables: var, let, const Guide</span>
+                        <span class="task-tag">Notes</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="day-card" data-search="day 2 dom intro console log elements">
+                <div class="day-header">
+                    <span class="day-badge">DAY 02</span>
+                    <span class="task-count">1 Exercise</span>
+                </div>
+                <h3 class="day-title">DOM Introduction & Output</h3>
+                <p class="day-desc">Console logging, basic DOM inspection, and JavaScript inclusion.</p>
+                <div class="task-list">
+                    <a href="day2/index.html" class="task-link">
+                        <span>DOM Basics & Script Linking</span>
+                        <span class="task-tag">JS / HTML</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="day-card" data-search="day 3 operators logic conditions if else switch index1 index2 index3 index4">
+                <div class="day-header">
+                    <span class="day-badge">DAY 03</span>
+                    <span class="task-count">4 Exercises</span>
+                </div>
+                <h3 class="day-title">Operators & Conditionals</h3>
+                <p class="day-desc">Arithmetic, comparison, logical operators, if-else trees, and switch.</p>
+                <div class="task-list">
+                    <a href="day3/index1.html" class="task-link">
+                        <span>Exercise 1: Arithmetic & Assignment</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                    <a href="day3/index2.html" class="task-link">
+                        <span>Exercise 2: Comparison & Logic</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                    <a href="day3/index3.html" class="task-link">
+                        <span>Exercise 3: If/Else Conditional Logic</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                    <a href="day3/index4.html" class="task-link">
+                        <span>Exercise 4: Switch Statements & Practice</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="day-card" data-search="day 4 loops for while do-while iteration">
+                <div class="day-header">
+                    <span class="day-badge">DAY 04</span>
+                    <span class="task-count">1 Exercise</span>
+                </div>
+                <h3 class="day-title">Loops & Iterations</h3>
+                <p class="day-desc">For loops, while loops, do-while loops, and break/continue statements.</p>
+                <div class="task-list">
+                    <a href="day4/index.html" class="task-link">
+                        <span>Loops & Iteration Controls</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 5 -->
+            <div class="day-card" data-search="day 5 functions arrow scope parameters return">
+                <div class="day-header">
+                    <span class="day-badge">DAY 05</span>
+                    <span class="task-count">1 Exercise</span>
+                </div>
+                <h3 class="day-title">Functions & Scope</h3>
+                <p class="day-desc">Declarations, function expressions, arrow functions, and return values.</p>
+                <div class="task-list">
+                    <a href="day5/index.html" class="task-link">
+                        <span>Function Declarations & Arrow Syntax</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 6 -->
+            <div class="day-card" data-search="day 6 arrays objects methods map filter reduce">
+                <div class="day-header">
+                    <span class="day-badge">DAY 06</span>
+                    <span class="task-count">1 Exercise</span>
+                </div>
+                <h3 class="day-title">Arrays & Objects</h3>
+                <p class="day-desc">Array operations, object properties, map, filter, and data manipulation.</p>
+                <div class="task-list">
+                    <a href="day6/index.html" class="task-link">
+                        <span>Array Methods & Object Manipulation</span>
+                        <span class="task-tag">JS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 7 -->
+            <div class="day-card" data-search="day 7 dom selection queryselector getelementbyid manipulation">
+                <div class="day-header">
+                    <span class="day-badge">DAY 07</span>
+                    <span class="task-count">1 Exercise</span>
+                </div>
+                <h3 class="day-title">DOM Selection & Modification</h3>
+                <p class="day-desc">querySelector, innerHTML, textContent, style manipulation, and classes.</p>
+                <div class="task-list">
+                    <a href="day7/index.html" class="task-link">
+                        <span>DOM Element Selection & Modification</span>
+                        <span class="task-tag">DOM</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 8 -->
+            <div class="day-card" data-search="day 8 events addeventlistener click input interactive">
+                <div class="day-header">
+                    <span class="day-badge">DAY 08</span>
+                    <span class="task-count">1 Exercise</span>
+                </div>
+                <h3 class="day-title">Events & User Interaction</h3>
+                <p class="day-desc">Click events, input listeners, event propagation, and dynamic UI.</p>
+                <div class="task-list">
+                    <a href="day8/index.html" class="task-link">
+                        <span>Event Listeners & Interactive UI</span>
+                        <span class="task-tag">Events</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 9 -->
+            <div class="day-card" data-search="day 9 validation dynamic elements mini app index1 index2 index3">
+                <div class="day-header">
+                    <span class="day-badge">DAY 09</span>
+                    <span class="task-count">3 Exercises</span>
+                </div>
+                <h3 class="day-title">DOM Projects & Form Handling</h3>
+                <p class="day-desc">Form validation, dynamic element generation, and mini interactive apps.</p>
+                <div class="task-list">
+                    <a href="day9/index1.html" class="task-link">
+                        <span>Exercise 1: Interactive Form Validation</span>
+                        <span class="task-tag">Project</span>
+                    </a>
+                    <a href="day9/index2.html" class="task-link">
+                        <span>Exercise 2: Dynamic Element Creation</span>
+                        <span class="task-tag">Project</span>
+                    </a>
+                    <a href="day9/index3.html" class="task-link">
+                        <span>Exercise 3: Interactive Mini Application</span>
+                        <span class="task-tag">Project</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 10 -->
+            <div class="day-card" data-search="day 10 advanced dom traversing nodes active workspace task 1 task 2">
+                <div class="day-header">
+                    <span class="day-badge">DAY 10 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Advanced DOM & Nodes</h3>
+                <p class="day-desc">DOM traversal, parent/child nodes, cloning, and style mutations.</p>
+                <div class="task-list">
+                    <a href="day10/index.html" class="task-link">
+                        <span>Day 10 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day10/task1.html" class="task-link">
+                        <span>Task 1: DOM Node Traversal</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day10/task2.html" class="task-link">
+                        <span>Task 2: Dynamic Elements List</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 11 -->
+            <div class="day-card" data-search="day 11 timers settimeout setinterval stopwatch active workspace">
+                <div class="day-header">
+                    <span class="day-badge">DAY 11 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Timers & Async Delays</h3>
+                <p class="day-desc">setTimeout, setInterval, clearInterval, stopwatches, and digital clocks.</p>
+                <div class="task-list">
+                    <a href="day11/index.html" class="task-link">
+                        <span>Day 11 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day11/task1.html" class="task-link">
+                        <span>Task 1: Timer & Countdown</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day11/task2.html" class="task-link">
+                        <span>Task 2: Interactive Stopwatch</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 12 -->
+            <div class="day-card" data-search="day 12 es6 destructuring spread rest template literals arrow">
+                <div class="day-header">
+                    <span class="day-badge">DAY 12 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">ES6+ Features & Syntax</h3>
+                <p class="day-desc">Destructuring arrays/objects, spread/rest operators, and template literals.</p>
+                <div class="task-list">
+                    <a href="day12/index.html" class="task-link">
+                        <span>Day 12 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day12/task1.html" class="task-link">
+                        <span>Task 1: Object & Array Destructuring</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day12/task2.html" class="task-link">
+                        <span>Task 2: Rest and Spread Operations</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 13 -->
+            <div class="day-card" data-search="day 13 localstorage sessionstorage cookies storage json parse">
+                <div class="day-header">
+                    <span class="day-badge">DAY 13 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Web Storage API</h3>
+                <p class="day-desc">localStorage, sessionStorage, JSON serialization, and persisting state.</p>
+                <div class="task-list">
+                    <a href="day13/index.html" class="task-link">
+                        <span>Day 13 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day13/task1.html" class="task-link">
+                        <span>Task 1: Theme Saver (Dark/Light)</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day13/task2.html" class="task-link">
+                        <span>Task 2: Persistent Note Taker</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 14 -->
+            <div class="day-card" data-search="day 14 promises async await callbacks promises resolve reject">
+                <div class="day-header">
+                    <span class="day-badge">DAY 14 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Promises & Async/Await</h3>
+                <p class="day-desc">Asynchronous JavaScript, Promise chaining, resolve/reject, and try/catch.</p>
+                <div class="task-list">
+                    <a href="day14/index.html" class="task-link">
+                        <span>Day 14 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day14/task1.html" class="task-link">
+                        <span>Task 1: Promise Creation & Chaining</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day14/task2.html" class="task-link">
+                        <span>Task 2: Async/Await Workflow</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 15 -->
+            <div class="day-card" data-search="day 15 fetch api ajax json rest apis get post">
+                <div class="day-header">
+                    <span class="day-badge">DAY 15 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Fetch API & HTTP Requests</h3>
+                <p class="day-desc">Fetching JSON data from public APIs, handling HTTP responses and errors.</p>
+                <div class="task-list">
+                    <a href="day15/index.html" class="task-link">
+                        <span>Day 15 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day15/task1.html" class="task-link">
+                        <span>Task 1: Fetching User Profiles</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day15/task2.html" class="task-link">
+                        <span>Task 2: Weather / Quotes API Card</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 16 -->
+            <div class="day-card" data-search="day 16 modules import export modular javascript code organization">
+                <div class="day-header">
+                    <span class="day-badge">DAY 16 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">ES6 Modules & Imports</h3>
+                <p class="day-desc">Exporting functions/objects, default imports, and modular application design.</p>
+                <div class="task-list">
+                    <a href="day16/index.html" class="task-link">
+                        <span>Day 16 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day16/task1.html" class="task-link">
+                        <span>Task 1: Math & Helper Utilities</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day16/task2.html" class="task-link">
+                        <span>Task 2: Modular Component View</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 17 -->
+            <div class="day-card" data-search="day 17 oop object oriented classes constructor inheritance">
+                <div class="day-header">
+                    <span class="day-badge">DAY 17 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Object-Oriented JavaScript</h3>
+                <p class="day-desc">Classes, constructors, getters/setters, methods, and class inheritance.</p>
+                <div class="task-list">
+                    <a href="day17/index.html" class="task-link">
+                        <span>Day 17 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day17/task1.html" class="task-link">
+                        <span>Task 1: Bank Account / User Class</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day17/task2.html" class="task-link">
+                        <span>Task 2: Vehicle / Item Inheritance</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 18 -->
+            <div class="day-card" data-search="day 18 regex regular expressions validation error handling">
+                <div class="day-header">
+                    <span class="day-badge">DAY 18 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">RegEx & Error Handling</h3>
+                <p class="day-desc">Pattern matching, email/password validation, custom error throwing.</p>
+                <div class="task-list">
+                    <a href="day18/index.html" class="task-link">
+                        <span>Day 18 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day18/task1.html" class="task-link">
+                        <span>Task 1: Email & Password RegEx</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day18/task2.html" class="task-link">
+                        <span>Task 2: Custom Form Validator</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 19 -->
+            <div class="day-card" data-search="day 19 interactive app todo list quiz app shopping cart">
+                <div class="day-header">
+                    <span class="day-badge">DAY 19 • WORKSPACE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">Interactive Mini Apps</h3>
+                <p class="day-desc">Full interactive JavaScript app combining DOM, events, and storage.</p>
+                <div class="task-list">
+                    <a href="day19/index.html" class="task-link">
+                        <span>Day 19 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day19/task1.html" class="task-link">
+                        <span>Task 1: Interactive Todo App</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day19/task2.html" class="task-link">
+                        <span>Task 2: Dynamic Quiz Application</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 20 -->
+            <div class="day-card" data-search="day 20 capstone project complete javascript web app">
+                <div class="day-header">
+                    <span class="day-badge">DAY 20 • CAPSTONE</span>
+                    <span class="task-count">Ready for Tasks</span>
+                </div>
+                <h3 class="day-title">JavaScript Capstone Project</h3>
+                <p class="day-desc">Comprehensive frontend JavaScript application showcasing all skills.</p>
+                <div class="task-list">
+                    <a href="day20/index.html" class="task-link">
+                        <span>Day 20 Capstone Workspace</span>
+                        <span class="task-tag">Capstone</span>
+                    </a>
+                    <a href="day20/task1.html" class="task-link">
+                        <span>Task 1: Full App Dashboard</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                    <a href="day20/task2.html" class="task-link">
+                        <span>Task 2: Data Presentation & Charts</span>
+                        <span class="task-tag">Ready</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Frontend Learning Hub • JavaScript Practice Track • All tasks linked directly</p>
+    </footer>
+
+    <!-- INTERACTIVE SEARCH SCRIPT -->
+    <script>
+        const searchInput = document.getElementById('taskSearch');
+        const cards = document.querySelectorAll('.day-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase() + ' ' + (card.getAttribute('data-search') || '');
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

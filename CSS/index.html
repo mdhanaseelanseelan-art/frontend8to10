@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Track - Frontend Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 72px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #101828;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            opacity: 0.5;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #dbe4f0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.18);
+            color: #fff;
+            transform: translateX(-3px);
+        }
+
+        /* HERO BANNER */
+        .banner {
+            padding: 55px 7% 45px;
+            background: linear-gradient(135deg, #101828, #183b63, #175cd3);
+            color: white;
+        }
+
+        .banner-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(23, 92, 211, 0.35);
+            border: 1px solid rgba(132, 181, 255, 0.4);
+            color: #d1e3ff;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .banner h1 {
+            font-size: clamp(34px, 4.5vw, 50px);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .banner p {
+            color: #dbe7f5;
+            margin-top: 10px;
+            font-size: 16px;
+            max-width: 620px;
+        }
+
+        .stats-badge-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 24px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .stat-card .num {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-card .lbl {
+            font-size: 12px;
+            color: #d1e3ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* CONTROLS */
+        .controls-container {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding: 0 7%;
+            width: 100%;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #d0d7e2;
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 15px rgba(16, 24, 40, 0.04);
+            gap: 12px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            color: #172033;
+        }
+
+        .search-box input::placeholder {
+            color: #98a2b3;
+        }
+
+        /* GRID */
+        main {
+            max-width: 1200px;
+            margin: 30px auto 70px;
+            padding: 0 7%;
+            flex: 1;
+            width: 100%;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 24px;
+        }
+
+        /* DAY CARD */
+        .day-card {
+            background: white;
+            border: 1px solid #e4e8ef;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px rgba(16, 24, 40, 0.1);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f2f7;
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+        }
+
+        .day-badge {
+            background: #edf5ff;
+            color: #175cd3;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .task-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667085;
+        }
+
+        .day-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #101828;
+            margin-bottom: 6px;
+        }
+
+        .day-desc {
+            font-size: 13px;
+            color: #667085;
+            margin-bottom: 18px;
+            flex-grow: 0;
+        }
+
+        /* TASK LINKS */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .task-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8fafc;
+            border: 1px solid #e9edf3;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #344054;
+            transition: all 0.2s ease;
+        }
+
+        .task-link:hover {
+            background: #edf5ff;
+            border-color: #bcd7ff;
+            color: #175cd3;
+            transform: translateX(4px);
+        }
+
+        .task-tag {
+            font-size: 11px;
+            font-weight: 700;
+            background: #eaecf0;
+            color: #475467;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-left: 8px;
+        }
+
+        .task-link:hover .task-tag {
+            background: #bcd7ff;
+            color: #124ab0;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #101828;
+            color: #98a2b3;
+            font-size: 13px;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-badge-group {
+                width: 100%;
+            }
+            .stat-card {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            Frontend<span>Hub</span>
+        </div>
+        <a href="../index.html" class="back-link">
+            ← Back to Hub
+        </a>
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner-inner">
+            <div>
+                <span class="badge">Track Overview</span>
+                <h1>CSS Practice Collection</h1>
+                <p>Master cascading stylesheets: typography, box model, Flexbox layouts, Grid systems, transitions, animations, and responsive web projects.</p>
+            </div>
+            <div class="stats-badge-group">
+                <div class="stat-card">
+                    <div class="num">10</div>
+                    <div class="lbl">Active Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">40+</div>
+                    <div class="lbl">Tasks & Layouts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEARCH & FILTER -->
+    <div class="controls-container">
+        <div class="search-box">
+            <span style="font-size: 18px;">🔍</span>
+            <input type="text" id="taskSearch" placeholder="Search days, flexbox, grid, cards, animations (e.g. 'flexbox', 'day 6', 'grid')...">
+        </div>
+    </div>
+
+    <!-- MAIN TASKS GRID -->
+    <main>
+        <div class="days-grid" id="daysGrid">
+
+            <!-- DAY 1 -->
+            <div class="day-card" data-search="day 1 college colour company fav profile student selectors styling">
+                <div class="day-header">
+                    <span class="day-badge">DAY 01</span>
+                    <span class="task-count">6 Tasks</span>
+                </div>
+                <h3 class="day-title">CSS Selectors & Colors</h3>
+                <p class="day-desc">Core CSS selectors, background colors, fonts, and entity styling.</p>
+                <div class="task-list">
+                    <a href="day1/college.html" class="task-link">
+                        <span>College Portal Styling</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day1/colour.html" class="task-link">
+                        <span>Colors & Backgrounds</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day1/company.html" class="task-link">
+                        <span>Company Site Style</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day1/fav.html" class="task-link">
+                        <span>Favicon & Font Styling</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day1/profile.html" class="task-link">
+                        <span>User Profile Card</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day1/student.html" class="task-link">
+                        <span>Student ID Card</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div class="day-card" data-search="day 2 chennai company department hospital index movie multi-page">
+                <div class="day-header">
+                    <span class="day-badge">DAY 02</span>
+                    <span class="task-count">6 Pages</span>
+                </div>
+                <h3 class="day-title">External CSS & Site Themes</h3>
+                <p class="day-desc">Multi-page website stylesheets, branding, and themed pages.</p>
+                <div class="task-list">
+                    <a href="day2/index.html" class="task-link">
+                        <span>Day 2 Multi-page Portal</span>
+                        <span class="task-tag">Project</span>
+                    </a>
+                    <a href="day2/chennai.html" class="task-link">
+                        <span>Chennai City Guide</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day2/company.html" class="task-link">
+                        <span>Corporate Profile Layout</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day2/department.html" class="task-link">
+                        <span>Department Overview</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day2/hospital.html" class="task-link">
+                        <span>Hospital Healthcare Page</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day2/movie.html" class="task-link">
+                        <span>Movie Review Template</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div class="day-card" data-search="day 3 article box card employee product student box model">
+                <div class="day-header">
+                    <span class="day-badge">DAY 03</span>
+                    <span class="task-count">6 Tasks</span>
+                </div>
+                <h3 class="day-title">Box Model & Card Designs</h3>
+                <p class="day-desc">Margin, padding, borders, shadows, and modern card UI patterns.</p>
+                <div class="task-list">
+                    <a href="day3/article.html" class="task-link">
+                        <span>Blog Article Layout</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day3/box.html" class="task-link">
+                        <span>CSS Box Model Exploration</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day3/card.html" class="task-link">
+                        <span>Modern Content Card</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day3/employee.html" class="task-link">
+                        <span>Employee Directory Card</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day3/product.html" class="task-link">
+                        <span>E-commerce Product Card</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day3/student.html" class="task-link">
+                        <span>Student Record Card</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div class="day-card" data-search="day 4 task 1 task 2 task 4 task 5 display borders outlines">
+                <div class="day-header">
+                    <span class="day-badge">DAY 04</span>
+                    <span class="task-count">4 Tasks</span>
+                </div>
+                <h3 class="day-title">Display & Box Sizing</h3>
+                <p class="day-desc">Inline, block, inline-block, box-sizing, and borders.</p>
+                <div class="task-list">
+                    <a href="day4/task1.html" class="task-link">
+                        <span>Task 1: Margin & Padding Flow</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day4/task2.html" class="task-link">
+                        <span>Task 2: Borders & Outlines</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day4/task4.html" class="task-link">
+                        <span>Task 4: Display Property Rules</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                    <a href="day4/task5.html" class="task-link">
+                        <span>Task 5: Box Sizing Mechanics</span>
+                        <span class="task-tag">CSS</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 5 -->
+            <div class="day-card" data-search="day 5 project showcase media layout">
+                <div class="day-header">
+                    <span class="day-badge">DAY 05</span>
+                    <span class="task-count">1 Project</span>
+                </div>
+                <h3 class="day-title">Media & Layout Project</h3>
+                <p class="day-desc">Integrated multimedia web showcase with structured styling.</p>
+                <div class="task-list">
+                    <a href="day5/index.html" class="task-link">
+                        <span>Day 5 Project: Media Showcase</span>
+                        <span class="task-tag">Project</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 6 -->
+            <div class="day-card" data-search="day 6 flexbox box5 boxes chat nav shop navbar">
+                <div class="day-header">
+                    <span class="day-badge">DAY 06</span>
+                    <span class="task-count">5 Tasks</span>
+                </div>
+                <h3 class="day-title">Flexbox Fundamentals</h3>
+                <p class="day-desc">Flex containers, justify-content, align-items, navbars, and chat UI.</p>
+                <div class="task-list">
+                    <a href="day6/nav.html" class="task-link">
+                        <span>Responsive Navigation Bar</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day6/chat.html" class="task-link">
+                        <span>Chat Messenger UI</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day6/shop.html" class="task-link">
+                        <span>Shopping Catalog Row</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day6/box5.html" class="task-link">
+                        <span>Flexbox Layout 5</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day6/boxes.html" class="task-link">
+                        <span>Flex Box Distribution</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 7 -->
+            <div class="day-card" data-search="day 7 task 1 task 2 task 3 task 4 flex wrap alignment layout">
+                <div class="day-header">
+                    <span class="day-badge">DAY 07</span>
+                    <span class="task-count">4 Tasks</span>
+                </div>
+                <h3 class="day-title">Advanced Flexbox Layouts</h3>
+                <p class="day-desc">Flex wrap, order, gap, sidebar + main layouts, and flex grids.</p>
+                <div class="task-list">
+                    <a href="day7/task1.html" class="task-link">
+                        <span>Task 1: Flex Alignment Matrix</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day7/task2.html" class="task-link">
+                        <span>Task 2: Flex Wrap & Ordering</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day7/task3.html" class="task-link">
+                        <span>Task 3: Multi-column Flex Grid</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                    <a href="day7/task4.html" class="task-link">
+                        <span>Task 4: Complex Header & Sidebar</span>
+                        <span class="task-tag">Flexbox</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 8 -->
+            <div class="day-card" data-search="day 8 grid task 1 task 2 task 3 task 4 task 5 gallery dashboard">
+                <div class="day-header">
+                    <span class="day-badge">DAY 08</span>
+                    <span class="task-count">5 Tasks</span>
+                </div>
+                <h3 class="day-title">CSS Grid Mastery</h3>
+                <p class="day-desc">Grid templates, fractional units, areas, auto-fit, and responsive grids.</p>
+                <div class="task-list">
+                    <a href="day8/task1.html" class="task-link">
+                        <span>Task 1: Grid Columns & Rows</span>
+                        <span class="task-tag">Grid</span>
+                    </a>
+                    <a href="day8/task2.html" class="task-link">
+                        <span>Task 2: Grid Template Areas</span>
+                        <span class="task-tag">Grid</span>
+                    </a>
+                    <a href="day8/task3.html" class="task-link">
+                        <span>Task 3: Auto-fit & Minmax Magic</span>
+                        <span class="task-tag">Grid</span>
+                    </a>
+                    <a href="day8/task4.html" class="task-link">
+                        <span>Task 4: Photo Gallery Grid</span>
+                        <span class="task-tag">Grid</span>
+                    </a>
+                    <a href="day8/task5.html" class="task-link">
+                        <span>Task 5: Dashboard Grid Layout</span>
+                        <span class="task-tag">Grid</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 9 -->
+            <div class="day-card" data-search="day 9 positioning sticky fixed transitions transforms hover">
+                <div class="day-header">
+                    <span class="day-badge">DAY 09</span>
+                    <span class="task-count">4 Tasks</span>
+                </div>
+                <h3 class="day-title">Positioning & Transforms</h3>
+                <p class="day-desc">Absolute, relative, fixed, sticky, CSS transforms and smooth transitions.</p>
+                <div class="task-list">
+                    <a href="day9/index1.html" class="task-link">
+                        <span>Index 1: Stacking & Positioning</span>
+                        <span class="task-tag">Position</span>
+                    </a>
+                    <a href="day9/index2.html" class="task-link">
+                        <span>Index 2: Sticky & Fixed Headers</span>
+                        <span class="task-tag">Position</span>
+                    </a>
+                    <a href="day9/index3.html" class="task-link">
+                        <span>Index 3: Transforms & Scales</span>
+                        <span class="task-tag">Transform</span>
+                    </a>
+                    <a href="day9/index4.html" class="task-link">
+                        <span>Index 4: Interactive Hover Effects</span>
+                        <span class="task-tag">Animation</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DAY 10 -->
+            <div class="day-card" data-search="day 10 responsive projects portfolio landing web complete">
+                <div class="day-header">
+                    <span class="day-badge">DAY 10</span>
+                    <span class="task-count">3 Projects</span>
+                </div>
+                <h3 class="day-title">Complete Responsive Projects</h3>
+                <p class="day-desc">Media queries, fluid typography, and production-ready webpage designs.</p>
+                <div class="task-list">
+                    <a href="day10/index1.html" class="task-link">
+                        <span>Project 1: Responsive Landing Page</span>
+                        <span class="task-tag">Responsive</span>
+                    </a>
+                    <a href="day10/index2.html" class="task-link">
+                        <span>Project 2: Modern Portfolio Layout</span>
+                        <span class="task-tag">Responsive</span>
+                    </a>
+                    <a href="day10/index3.html" class="task-link">
+                        <span>Project 3: Full Responsive Website</span>
+                        <span class="task-tag">Responsive</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Frontend Learning Hub • CSS Practice Track • All tasks linked directly</p>
+    </footer>
+
+    <!-- INTERACTIVE SEARCH SCRIPT -->
+    <script>
+        const searchInput = document.getElementById('taskSearch');
+        const cards = document.querySelectorAll('.day-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase() + ' ' + (card.getAttribute('data-search') || '');
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
