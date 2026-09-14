@@ -1,44 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Day 20 - Task Workspace</title>
-    <style>
-        body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 40px 20px; background: #f8fafc; color: #1e293b; display: flex; justify-content: center; }
-        .container { max-width: 650px; width: 100%; background: #fff; padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
-        .badge { display: inline-block; background: #fff8df; color: #8a6500; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
-        h1 { margin: 0 0 10px; font-size: 24px; }
-        p { color: #64748b; line-height: 1.6; }
-        .code-box { background: #0f172a; color: #fde047; padding: 20px; border-radius: 10px; font-family: Consolas, monospace; font-size: 14px; margin: 20px 0; }
-        .task-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
-        .task-nav a { padding: 8px 14px; background: #f1f5f9; border-radius: 8px; text-decoration: none; color: #334155; font-size: 13px; font-weight: 600; }
-        .task-nav a:hover { background: #fff8df; color: #8a6500; }
-        .back-btn { display: inline-block; margin-top: 15px; color: #8a6500; font-weight: bold; text-decoration: none; }
-        .back-btn:hover { text-decoration: underline; }
-    </style>
+    <title>IT Nexus | Demystifying the Future of Technology for Everyone</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
-    <div class="container">
-        <span class="badge">DAY 20 • CAPSTONE WORKSPACE</span>
-        <h1>JavaScript Day 20</h1>
-        <p>This workspace is ready for your capstone project code. Open this file in your editor and add your scripts!</p>
-        <div class="task-nav">
-            <a href="task1.html">Task 1</a>
-            <a href="task2.html">Task 2</a>
-            <a href="task3.html">Task 3</a>
-            <a href="task4.html">Task 4</a>
-            <a href="task5.html">Task 5</a>
-            <a href="task6.html">Task 6</a>
+
+    <!-- READING PROGRESS BAR -->
+    <div id="readingProgressBar"></div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <span>IT</span> NEXUS
+                <span class="logo-badge">Future Tech</span>
+            </a>
         </div>
-        <div class="code-box">
-            // Open this folder in VS Code to add your daily tasks!<br>
-            console.log("Day 20 workspace ready.");
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="article.html">Part 1: IT in 2030</a></li>
+            <li><a href="content2.html">Part 2: World Without IT</a></li>
+            <li><a href="content3.html">Part 3: The Solutions</a></li>
+        </ul>
+
+        <div class="nav-auth-container" id="navAuthContainer">
+            <!-- Populated dynamically via script.js -->
+            <a href="register.html" class="nav-btn">Register</a>
+            <a href="login.html" class="btn btn-sm btn-primary">Login</a>
         </div>
-        <a href="../index.html" class="back-btn">← Back to JavaScript Track</a>
-    </div>
-    <script>
-        console.log("Day 20 Loaded");
-    </script>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">🚀 Technology Explained Simply</span>
+
+            <h1>
+                Understand the <span>Future of IT</span> Without Any Tech Background.
+            </h1>
+
+            <p class="hero-text">
+                Information Technology isn't just about computer code—it is the invisible engine powering our hospitals, banks, electricity, and daily life. Discover what 2030 holds, what happens if IT stops, and how anyone can thrive in this new era.
+            </p>
+
+            <div class="hero-buttons">
+                <!-- Dummy trigger buttons with seamless frontend auth routing -->
+                <a href="register.html" id="homeGetStartedBtn" class="btn primary-btn btn-lg">
+                    Get Started Free →
+                </a>
+                <a href="article.html" id="homeReadArticlesBtn" class="btn secondary-btn btn-lg">
+                    Read Articles
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="hero-stats-row">
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>In-Depth Master Series</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Plain English & Analogy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2030</h3>
+                    <p>Future Readiness Outlook</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Visual Component -->
+        <div class="hero-card">
+            <div class="hero-card-glow"></div>
+            <div class="floating-stack">
+                <div class="floating-pill">
+                    <div class="pill-icon">🌐</div>
+                    <div class="pill-info">
+                        <h4>Topic 01: IT in 2030</h4>
+                        <p>How daily life, healthcare & AI will evolve</p>
+                    </div>
+                </div>
+
+                <div class="floating-pill">
+                    <div class="pill-icon">⚠️</div>
+                    <div class="pill-info">
+                        <h4>Topic 02: A World Without IT</h4>
+                        <p>What happens if our digital world vanishes?</p>
+                    </div>
+                </div>
+
+                <div class="floating-pill">
+                    <div class="pill-icon">💡</div>
+                    <div class="pill-info">
+                        <h4>Topic 03: The Practical Solution</h4>
+                        <p>How non-tech people & students can succeed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPLAINER BANNER (FOR PEOPLE WITH ZERO IT KNOWLEDGE) -->
+    <section class="section" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="explainer-banner">
+            <div>
+                <span class="eyebrow">✨ For Everyday Readers</span>
+                <h3>Don't Know Coding? You Are in the Right Place.</h3>
+                <p>
+                    Many people think "IT" is only for computer engineers sitting in air-conditioned offices typing complicated code. That's a myth! IT is like electricity: you don't need to know how power plants work to turn on a light bulb.
+                </p>
+                <p style="color: #cbd5e1;">
+                    Our comprehensive series breaks down complex future trends into simple everyday stories, real-life examples, and actionable advice.
+                </p>
+            </div>
+            <div>
+                <ul class="benefits-list">
+                    <li><span>✔</span> <strong>Zero Jargon:</strong> Everything explained using simple daily life examples.</li>
+                    <li><span>✔</span> <strong>Gated Deep Insights:</strong> Register a free account to unlock all 3 full master articles.</li>
+                    <li><span>✔</span> <strong>Career & Life Survival:</strong> Practical steps for students, workers, and parents.</li>
+                    <li><span>✔</span> <strong>Interactive Learning:</strong> Compare past vs future and test your understanding.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 CORE MASTER ARTICLES SECTION -->
+    <section class="section">
+        <div class="section-header">
+            <span class="eyebrow">📚 3-Part Master Article Series</span>
+            <h2>Explore the Core Questions of Our Digital Future</h2>
+            <p>Click any topic below to start reading. Create a free dummy account or log in to unlock the full in-depth articles.</p>
+        </div>
+
+        <div class="topic-grid">
+            <!-- Card 1 -->
+            <div class="topic-card">
+                <div class="card-top">
+                    <span class="topic-number">PART 01</span>
+                    <span class="lock-badge">🔒 Members Only</span>
+                </div>
+                <h3>In 2030, How Would IT Be Like?</h3>
+                <p>
+                    Explore how Artificial Intelligence, smart cities, automated transportation, and personalized healthcare will reshape daily routines by 2030, moving from writing code to solving human challenges.
+                </p>
+                <div class="card-footer">
+                    <span class="read-time">⏱️ 6 min read</span>
+                    <a href="article.html" class="btn btn-sm btn-primary">Read Part 1 →</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="topic-card">
+                <div class="card-top">
+                    <span class="topic-number">PART 02</span>
+                    <span class="lock-badge">🔒 Members Only</span>
+                </div>
+                <h3>What If We Don't Have IT? What Would the World Be Like?</h3>
+                <p>
+                    A chilling thought experiment: if all IT systems shut down tomorrow, why would banks freeze, hospitals struggle, grocery supply chains break, and cities face chaos within 72 hours?
+                </p>
+                <div class="card-footer">
+                    <span class="read-time">⏱️ 8 min read</span>
+                    <a href="content2.html" class="btn btn-sm btn-primary">Read Part 2 →</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="topic-card">
+                <div class="card-top">
+                    <span class="topic-number">PART 03</span>
+                    <span class="lock-badge">🔒 Members Only</span>
+                </div>
+                <h3>What Is the Solution For That? Practical Guide for All</h3>
+                <p>
+                    How can regular people, college students, and working professionals build hybrid skills, leverage unique human superpowers that AI cannot replace, and thrive in an automated world?
+                </p>
+                <div class="card-footer">
+                    <span class="read-time">⏱️ 7 min read</span>
+                    <a href="content3.html" class="btn btn-sm btn-primary">Read Part 3 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION BANNER -->
+    <section class="section" style="padding-top: 0;">
+        <div class="end-card">
+            <span class="eyebrow">🚀 Ready to Start?</span>
+            <h2>Unlock All Full Articles in 5 Seconds</h2>
+            <p style="color: var(--text-secondary); max-width: 540px; margin: 16px auto 26px;">
+                Create a free demo account to get full unrestricted access to all 3 comprehensive master articles.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+                <a href="register.html" class="btn btn-primary btn-lg">Create Free Account →</a>
+                <a href="login.html" class="btn btn-secondary btn-lg">Login to Account</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo"><span>IT</span> NEXUS</div>
+                <p>
+                    A non-technical platform dedicated to helping everyone understand the present and future of Information Technology and AI.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Master Series</h4>
+                <ul>
+                    <li><a href="article.html">Part 1: In 2030, How IT Would Be Like</a></li>
+                    <li><a href="content2.html">Part 2: What If We Don't Have IT?</a></li>
+                    <li><a href="content3.html">Part 3: What Is the Solution?</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Member Access</h4>
+                <ul>
+                    <li><a href="register.html">Create Account (Register)</a></li>
+                    <li><a href="login.html">Member Login</a></li>
+                    <li><a href="profile.html">My Reading Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Community & Ethics</h4>
+                <ul>
+                    <li><a href="#">AI Ethics Principles</a></li>
+                    <li><a href="#">Digital Literacy Guide</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 IT Nexus. All rights reserved.</span>
+            <span>Learn. Understand. Innovate.</span>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
 </body>
+
 </html>

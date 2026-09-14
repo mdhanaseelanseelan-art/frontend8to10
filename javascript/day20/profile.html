@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile & Reading Dashboard | IT Nexus</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <span>IT</span> NEXUS
+                <span class="logo-badge">Dashboard</span>
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="article.html">Part 1: IT in 2030</a></li>
+            <li><a href="content2.html">Part 2: World Without IT</a></li>
+            <li><a href="content3.html">Part 3: The Solutions</a></li>
+        </ul>
+
+        <div class="nav-auth-container" id="navAuthContainer">
+            <!-- Populated dynamically via script.js -->
+        </div>
+    </header>
+
+    <!-- PROFILE CONTAINER -->
+    <main class="profile-container">
+
+        <!-- HEADER CARD -->
+        <div class="profile-header-card">
+            <div class="profile-big-avatar" id="profileBigAvatar">U</div>
+            <div>
+                <span class="eyebrow" style="margin-bottom: 4px;">VERIFIED MEMBER DASHBOARD</span>
+                <h1 style="font-family: var(--font-heading); font-size: 28px;">
+                    Welcome, <span id="profileWelcomeName" style="color: var(--accent-cyan);">User</span>!
+                </h1>
+                <p style="color: var(--text-secondary); font-size: 14.5px;">
+                    Your account is active and all 3 master articles are unlocked.
+                </p>
+            </div>
+        </div>
+
+        <!-- DETAILS GRID -->
+        <div class="profile-details-grid">
+            <div class="profile-item">
+                <span>USERNAME</span>
+                <strong id="profileUsername">-</strong>
+            </div>
+
+            <div class="profile-item">
+                <span>EMAIL ADDRESS</span>
+                <strong id="profileEmail">-</strong>
+            </div>
+
+            <div class="profile-item">
+                <span>MEMBER STATUS</span>
+                <strong id="profileRole" style="color: #34d399;">Active • Full Access</strong>
+            </div>
+
+            <div class="profile-item">
+                <span>INTEREST AREA</span>
+                <strong id="profileInterest">Future IT & Society</strong>
+            </div>
+        </div>
+
+        <!-- UNLOCKED ARTICLES SECTION -->
+        <div style="margin: 40px 0 20px;">
+            <span class="eyebrow">YOUR MASTER CHAPTERS</span>
+            <h2 style="font-family: var(--font-heading); font-size: 24px; margin-bottom: 20px;">
+                Unlocked Articles Available to Read:
+            </h2>
+
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <div class="card-top">
+                        <span class="topic-number">PART 01</span>
+                        <span style="color: #34d399; font-size: 13px; font-weight: 700;">🔓 Unlocked</span>
+                    </div>
+                    <h3>In 2030, How Would IT Be Like?</h3>
+                    <p>AI transformations, everyday smart living, and the new role of human creativity.</p>
+                    <div class="card-footer">
+                        <span class="read-time">⏱️ 6 min read</span>
+                        <a href="article.html" class="btn btn-sm btn-primary">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="card-top">
+                        <span class="topic-number">PART 02</span>
+                        <span style="color: #34d399; font-size: 13px; font-weight: 700;">🔓 Unlocked</span>
+                    </div>
+                    <h3>What If We Don't Have IT?</h3>
+                    <p>The societal collapse of banking, food supply, healthcare, and water systems.</p>
+                    <div class="card-footer">
+                        <span class="read-time">⏱️ 8 min read</span>
+                        <a href="content2.html" class="btn btn-sm btn-primary">Read Article →</a>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <div class="card-top">
+                        <span class="topic-number">PART 03</span>
+                        <span style="color: #34d399; font-size: 13px; font-weight: 700;">🔓 Unlocked</span>
+                    </div>
+                    <h3>What Is the Solution For That?</h3>
+                    <p>5 practical solutions, hybrid skill building, and a 4-step beginner checklist.</p>
+                    <div class="card-footer">
+                        <span class="read-time">⏱️ 7 min read</span>
+                        <a href="content3.html" class="btn btn-sm btn-primary">Read Article →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGOUT / ACTION BAR -->
+        <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 24px; flex-wrap: wrap; gap: 15px;">
+            <a href="article.html" class="btn btn-primary">Start Reading from Part 1 →</a>
+            <button id="profileLogoutBtn" class="btn btn-secondary" style="color: var(--danger); border-color: rgba(239,68,68,0.3);">
+                Log Out of Account
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo"><span>IT</span> NEXUS</div>
+                <p>Equipping curious learners with clear, practical knowledge for tomorrow's digital society.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Master Series</h4>
+                <ul>
+                    <li><a href="article.html">Part 1: IT in 2030</a></li>
+                    <li><a href="content2.html">Part 2: World Without IT</a></li>
+                    <li><a href="content3.html">Part 3: The Solutions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Member Access</h4>
+                <ul>
+                    <li><a href="register.html">Register Free</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="profile.html">Profile Dashboard</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Lifelong Learning Tips</a></li>
+                    <li><a href="#">Youth Skill Blueprint</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 IT Nexus. All rights reserved.</span>
+            <span>Learn. Understand. Innovate.</span>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
