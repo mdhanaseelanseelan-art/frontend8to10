@@ -1,0 +1,62 @@
+what is react?
+react is a open source js library to make a interactive and reusable ,reassignable especially for make a web application. React is made by facebook kind of open source introduced in 2013.in todays world it is handling by meta open source. it is mainly focusing ui layer design . react mainly focus on ui layer of an application. to change the data most of the traditional developers manually used dom structure. it is the update version of the dom.
+
+is react is a library framework?
+React is a JavaScript library, not a framework.
+React is mainly used to build user interfaces (UI), especially for web applications.
+
+2. What is a Component?
+
+A component is a small, reusable piece of UI in a React application.
+
+For example, a website can be divided into:
+
+Website process
+ Navbar
+ Sidebar
+ ProductCard
+ LoginForm
+ Footer
+
+3. Why are Components Important?
+
+it is important because it makes applications for example,
+reusable
+easy to understand
+easy to update
+easy to maintain
+
+4. What is JSX?
+
+JSX = JavaScript XML
+
+JSX allows us to write HTML-like syntax inside JavaScript.
+
+Example:
+
+function App() {
+    return <h1>Hello World</h1>;
+}
+
+
+<h1>Hello World</h1>
+
+looks like HTML.
+
+But it is actually JSX syntax inside JavaScript.
+
+We can also use JavaScript inside JSX:
+
+const name = "Dhana";
+
+function App() {
+    return <h1>Hello {name}</h1>;
+}
+
+Output:
+
+Hello Dhana
+
+
+
+ 
