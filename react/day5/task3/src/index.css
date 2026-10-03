@@ -1,0 +1,30 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.student{
+  background-color: blue;
+  height: 300px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  border-radius: 10px;
+
+  
+  
+     
+}
+.student1{
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;   
+
+  
+}
+
+
+
