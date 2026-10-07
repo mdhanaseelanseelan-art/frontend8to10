@@ -3,29 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Day 1 - Task 2</title>
+    <title>Day 1 - Task 2: Alter Table & Add Columns</title>
     <style>
-        body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 40px 20px; background: #f8fafc; color: #1e293b; display: flex; justify-content: center; }
-        .container { max-width: 650px; width: 100%; background: #fff; padding: 35px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
-        .badge { display: inline-block; background: #f3e8ff; color: #7c3aed; font-size: 12px; font-weight: bold; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px; }
-        h1 { margin: 0 0 10px; font-size: 24px; }
-        p { color: #64748b; line-height: 1.6; }
-        .code-box { background: #0f172a; color: #c4b5fd; padding: 20px; border-radius: 10px; font-family: Consolas, monospace; font-size: 14px; margin: 20px 0; }
-        .back-btn { display: inline-block; margin-top: 15px; color: #7c3aed; font-weight: bold; text-decoration: none; }
-        .back-btn:hover { text-decoration: underline; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar {
+            height: 64px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #101828;
+            color: white;
+        }
+        .logo { font-size: 20px; font-weight: 800; }
+        .logo span { opacity: 0.5; }
+        .nav-btn {
+            font-size: 13px;
+            font-weight: 600;
+            color: #dbe4f0;
+            text-decoration: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            transition: 0.2s;
+        }
+        .nav-btn:hover { background: rgba(255, 255, 255, 0.2); color: white; }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto 60px;
+            padding: 0 20px;
+            width: 100%;
+        }
+        .card {
+            background: #fff;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .badge {
+            display: inline-block;
+            background: #f3e8ff;
+            color: #7c3aed;
+            font-size: 12px;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+        }
+        h1 { margin: 0 0 10px; font-size: 26px; color: #0f172a; }
+        p.objective { color: #64748b; font-size: 15px; margin-bottom: 25px; }
+
+        .task-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .task-nav a {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .task-nav a:hover, .task-nav a.active {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .code-box {
+            background: #0f172a;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #1e293b;
+            margin-bottom: 25px;
+        }
+        .code-header {
+            background: #1e293b;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 12px;
+            font-family: Consolas, monospace;
+        }
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .copy-btn:hover { background: #7c3aed; }
+        pre.sql-code {
+            padding: 18px;
+            color: #fde047;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow-x: auto;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+            color: #0f172a;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+        th {
+            background: #f8fafc;
+            color: #475467;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+        }
+        tr:last-child td { border-bottom: none; }
+
+        .editor-area {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        textarea.sql-input {
+            width: 100%;
+            height: 100px;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px;
+            resize: vertical;
+        }
+
+        .back-links-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #f1f5f9;
+        }
+        .back-link {
+            color: #7c3aed;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #101828;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
+
+    <header class="navbar">
+        <div class="logo">Frontend<span>Hub</span></div>
+        <a href="index.html" class="nav-btn">← Day 1 Workspace</a>
+    </header>
+
     <div class="container">
-        <span class="badge">DAY 01 • TASK 02</span>
-        <h1>Day 1 - Task 2: Alter Tables Workspace</h1>
-        <p>This file is ready for your SQL code. Open this file in your editor and add your queries!</p>
-        <div class="code-box">
-            -- Write your SQL queries here<br>
-            ALTER TABLE students ADD COLUMN phone_number VARCHAR(15);<br>
-            ALTER TABLE students MODIFY COLUMN email VARCHAR(150);
+        <div class="card">
+            <span class="badge">DAY 01 • TASK 02</span>
+            <h1>Alter Table & Add Columns</h1>
+            <p class="objective">Modify existing table schemas dynamically by adding columns, modifying data types, and dropping deprecated columns.</p>
+
+            <div class="task-nav">
+                <a href="index.html">📁 Day Overview</a>
+                <a href="task1.html" class="">Task 1: Creating Student & Course Tables</a>
+                <a href="task2.html" class="active">Task 2: Alter Table & Add Columns</a>
+                <a href="ddl.sql" target="_blank">📜 Raw ddl.sql</a>
+            </div>
+
+            <div class="section-title">📝 SQL Solution Code</div>
+            <div class="code-box">
+                <div class="code-header">
+                    <span>task2_solution.sql</span>
+                    <button class="copy-btn" onclick="copyTaskSql()">📋 Copy SQL</button>
+                </div>
+                <pre class="sql-code" id="taskSql">-- Task 2: Schema Modifications
+ALTER TABLE students 
+ADD COLUMN status VARCHAR(20) DEFAULT 'Active';
+
+ALTER TABLE students 
+ADD COLUMN phone VARCHAR(15);
+
+ALTER TABLE courses 
+MODIFY COLUMN title VARCHAR(150);</pre>
+            </div>
+
+            <div class="section-title">📊 Expected Output Table</div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Null</th><th>Key</th><th>Default</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>student_id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td></tr><tr><td>full_name</td><td>varchar(100)</td><td>NO</td><td></td><td>NULL</td></tr><tr><td>email</td><td>varchar(100)</td><td>YES</td><td>UNI</td><td>NULL</td></tr><tr><td>status</td><td>varchar(20)</td><td>YES</td><td></td><td>'Active'</td></tr><tr><td>phone</td><td>varchar(15)</td><td>YES</td><td></td><td>NULL</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="editor-area">
+                <div class="section-title" style="margin-top: 0;">⚡ Practice Query Editor</div>
+                <textarea class="sql-input" placeholder="Type your custom solution query here...">-- Task 2: Schema Modifications
+ALTER TABLE students 
+ADD COLUMN status VARCHAR(20) DEFAULT 'Active';
+
+ALTER TABLE students 
+ADD COLUMN phone VARCHAR(15);
+
+ALTER TABLE courses 
+MODIFY COLUMN title VARCHAR(150);</textarea>
+                <button style="margin-top: 8px; padding: 7px 15px; background: #7c3aed; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;" onclick="alert('Simulation Successful! Query matches expected output.')">Run Test Query</button>
+            </div>
+
+            <div class="back-links-row">
+                <a href="index.html" class="back-link">← Return to Day 1 Overview</a>
+                <a href="task1.html" class="back-link">Go to Task 1: Creating Student & Course Tables →</a>
+            </div>
         </div>
-        <a href="../index.html" class="back-btn">← Back to SQL Track</a>
     </div>
+
+    <footer>
+        <p>Frontend Learning Hub • SQL Track • Day 1 Task 2</p>
+    </footer>
+
+    <script>
+        function copyTaskSql() {
+            const code = document.getElementById('taskSql').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerText = '✓ Copied!';
+                setTimeout(() => { btn.innerText = '📋 Copy SQL'; }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>

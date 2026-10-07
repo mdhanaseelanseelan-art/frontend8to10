@@ -275,6 +275,18 @@
             transform: translateX(4px);
         }
 
+        .sql-file-link {
+            background: #faf5ff;
+            border-color: #e9d5ff;
+            color: #6b21a8;
+        }
+
+        .sql-file-link:hover {
+            background: #f3e8ff;
+            border-color: #c084fc;
+            color: #581c87;
+        }
+
         .task-tag {
             font-size: 11px;
             font-weight: 700;
@@ -283,6 +295,12 @@
             padding: 2px 7px;
             border-radius: 6px;
             margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .sql-tag {
+            background: #e9d5ff;
+            color: #6b21a8;
         }
 
         .task-link:hover .task-tag {
@@ -339,8 +357,8 @@
                     <div class="lbl">Active Days</div>
                 </div>
                 <div class="stat-card">
-                    <div class="num">45+</div>
-                    <div class="lbl">Queries & Tasks</div>
+                    <div class="num">60+</div>
+                    <div class="lbl">Files & Tasks</div>
                 </div>
             </div>
         </div>
@@ -350,7 +368,7 @@
     <div class="controls-container">
         <div class="search-box">
             <span style="font-size: 18px;">🔍</span>
-            <input type="text" id="taskSearch" placeholder="Search days, tables, select, joins, group by, indexes (e.g. 'joins', 'day 8', 'select')...">
+            <input type="text" id="taskSearch" placeholder="Search days, tables, ddl.sql, joins, group by, indexes (e.g. 'ddl', 'day 1', 'joins')...">
         </div>
     </div>
 
@@ -359,371 +377,430 @@
         <div class="days-grid" id="daysGrid">
 
             <!-- DAY 1 -->
-            <div class="day-card" data-search="day 1 database basics create table datatypes ddl schema">
+            <div class="day-card" data-search="day 1 database basics create table datatypes ddl schema ddl.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 01 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Database Basics & DDL</h3>
                 <p class="day-desc">CREATE DATABASE, CREATE TABLE, data types (VARCHAR, INT, DATE), and DROP TABLE.</p>
                 <div class="task-list">
                     <a href="day1/index.html" class="task-link">
-                        <span>Day 1 Main Workspace</span>
+                        <span>📂 Day 1 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day1/ddl.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 ddl.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day1/task1.html" class="task-link">
                         <span>Task 1: Creating Student & Course Tables</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day1/task2.html" class="task-link">
                         <span>Task 2: Alter Table & Add Columns</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 2 -->
-            <div class="day-card" data-search="day 2 insert update delete dml records row operations">
+            <div class="day-card" data-search="day 2 insert update delete dml records row operations dml.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 02 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Data Manipulation (DML)</h3>
                 <p class="day-desc">INSERT INTO records, UPDATE row data, DELETE rows, and TRUNCATE practice.</p>
                 <div class="task-list">
                     <a href="day2/index.html" class="task-link">
-                        <span>Day 2 Main Workspace</span>
+                        <span>📂 Day 2 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day2/dml.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 dml.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day2/task1.html" class="task-link">
                         <span>Task 1: Bulk Inserting Records</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day2/task2.html" class="task-link">
                         <span>Task 2: Conditional Update and Delete</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 3 -->
-            <div class="day-card" data-search="day 3 select where order by limit distinct queries">
+            <div class="day-card" data-search="day 3 select where order by limit distinct queries select_queries.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 03 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">SELECT & Filtering Data</h3>
                 <p class="day-desc">SELECT statements, column projections, WHERE clauses, ORDER BY, and LIMIT.</p>
                 <div class="task-list">
                     <a href="day3/index.html" class="task-link">
-                        <span>Day 3 Main Workspace</span>
+                        <span>📂 Day 3 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day3/select_queries.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 select_queries.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day3/task1.html" class="task-link">
                         <span>Task 1: Basic SELECT & Column Aliases</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day3/task2.html" class="task-link">
                         <span>Task 2: Filter with WHERE and ORDER BY</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 4 -->
-            <div class="day-card" data-search="day 4 operators in between like wildcards pattern matching">
+            <div class="day-card" data-search="day 4 operators in between like wildcards pattern matching operators.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 04 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Logical Operators & Wildcards</h3>
                 <p class="day-desc">AND, OR, NOT, IN, BETWEEN, LIKE with wildcards (% and _), and IS NULL.</p>
                 <div class="task-list">
                     <a href="day4/index.html" class="task-link">
-                        <span>Day 4 Main Workspace</span>
+                        <span>📂 Day 4 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day4/operators.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 operators.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day4/task1.html" class="task-link">
                         <span>Task 1: Pattern Search with LIKE</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day4/task2.html" class="task-link">
                         <span>Task 2: Range Filtering with BETWEEN & IN</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 5 -->
-            <div class="day-card" data-search="day 5 aggregate count sum avg min max functions statistics">
+            <div class="day-card" data-search="day 5 aggregate count sum avg min max functions statistics aggregates.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 05 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Aggregate Functions</h3>
                 <p class="day-desc">COUNT, SUM, AVG, MIN, MAX, calculating summaries and statistics.</p>
                 <div class="task-list">
                     <a href="day5/index.html" class="task-link">
-                        <span>Day 5 Main Workspace</span>
+                        <span>📂 Day 5 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day5/aggregates.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 aggregates.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day5/task1.html" class="task-link">
                         <span>Task 1: Salary & Sales Statistics</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day5/task2.html" class="task-link">
                         <span>Task 2: Counting Filtered Rows</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 6 -->
-            <div class="day-card" data-search="day 6 group by having summary reports groupings">
+            <div class="day-card" data-search="day 6 group by having summary reports groupings groupby_having.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 06 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">GROUP BY & HAVING</h3>
                 <p class="day-desc">Categorizing results with GROUP BY, and filtering grouped output with HAVING.</p>
                 <div class="task-list">
                     <a href="day6/index.html" class="task-link">
-                        <span>Day 6 Main Workspace</span>
+                        <span>📂 Day 6 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day6/groupby_having.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 groupby_having.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day6/task1.html" class="task-link">
                         <span>Task 1: Department-wise Salary Totals</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day6/task2.html" class="task-link">
                         <span>Task 2: Filtering Groups with HAVING</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 7 -->
-            <div class="day-card" data-search="day 7 constraints primary key foreign key unique not null check">
+            <div class="day-card" data-search="day 7 constraints primary key foreign key unique not null check constraints.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 07 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Constraints & Keys</h3>
                 <p class="day-desc">PRIMARY KEY, FOREIGN KEY relationships, UNIQUE, NOT NULL, CHECK constraints.</p>
                 <div class="task-list">
                     <a href="day7/index.html" class="task-link">
-                        <span>Day 7 Main Workspace</span>
+                        <span>📂 Day 7 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day7/constraints.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 constraints.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day7/task1.html" class="task-link">
                         <span>Task 1: Relational Schema with Foreign Keys</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day7/task2.html" class="task-link">
                         <span>Task 2: CHECK & UNIQUE Constraints</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 8 -->
-            <div class="day-card" data-search="day 8 inner join table joins aliases relational queries">
+            <div class="day-card" data-search="day 8 inner join table joins aliases relational queries inner_join.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 08 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">INNER JOIN</h3>
                 <p class="day-desc">Joining matching records across two or more tables with table aliases.</p>
                 <div class="task-list">
                     <a href="day8/index.html" class="task-link">
-                        <span>Day 8 Main Workspace</span>
+                        <span>📂 Day 8 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day8/inner_join.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 inner_join.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day8/task1.html" class="task-link">
                         <span>Task 1: Customer Orders Inner Join</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day8/task2.html" class="task-link">
                         <span>Task 2: Multi-table Student Enrollments</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 9 -->
-            <div class="day-card" data-search="day 9 left join right join full outer join null handling">
+            <div class="day-card" data-search="day 9 left join right join full outer join null handling outer_joins.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 09 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">OUTER JOINS</h3>
                 <p class="day-desc">LEFT OUTER JOIN, RIGHT JOIN, FULL OUTER JOIN, handling NULL values.</p>
                 <div class="task-list">
                     <a href="day9/index.html" class="task-link">
-                        <span>Day 9 Main Workspace</span>
+                        <span>📂 Day 9 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day9/outer_joins.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 outer_joins.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day9/task1.html" class="task-link">
                         <span>Task 1: Customers Without Orders (LEFT JOIN)</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day9/task2.html" class="task-link">
                         <span>Task 2: Cross and Self Joins</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 10 -->
-            <div class="day-card" data-search="day 10 subqueries nested queries exists correlated subquery">
+            <div class="day-card" data-search="day 10 subqueries nested queries exists correlated subquery subqueries.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 10 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Subqueries & Nested Queries</h3>
                 <p class="day-desc">Subqueries in WHERE, FROM, SELECT clauses, EXISTS and NOT EXISTS.</p>
                 <div class="task-list">
                     <a href="day10/index.html" class="task-link">
-                        <span>Day 10 Main Workspace</span>
+                        <span>📂 Day 10 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day10/subqueries.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 subqueries.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day10/task1.html" class="task-link">
                         <span>Task 1: Above Average Salary Subquery</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day10/task2.html" class="task-link">
                         <span>Task 2: Correlated Subquery Practice</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 11 -->
-            <div class="day-card" data-search="day 11 views indexes performance optimization create view">
+            <div class="day-card" data-search="day 11 views indexes performance optimization create view views_indexes.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 11 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Views & Indexes</h3>
                 <p class="day-desc">Creating virtual tables with VIEW, improving query speed with INDEX.</p>
                 <div class="task-list">
                     <a href="day11/index.html" class="task-link">
-                        <span>Day 11 Main Workspace</span>
+                        <span>📂 Day 11 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day11/views_indexes.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 views_indexes.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day11/task1.html" class="task-link">
                         <span>Task 1: High Earners Reporting View</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day11/task2.html" class="task-link">
                         <span>Task 2: Creating and Testing Indexes</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 12 -->
-            <div class="day-card" data-search="day 12 transactions acid commit rollback savepoint atomicity">
+            <div class="day-card" data-search="day 12 transactions acid commit rollback savepoint atomicity transactions.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 12 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Transactions & ACID</h3>
                 <p class="day-desc">BEGIN TRANSACTION, COMMIT, ROLLBACK, SAVEPOINT, and ACID principles.</p>
                 <div class="task-list">
                     <a href="day12/index.html" class="task-link">
-                        <span>Day 12 Main Workspace</span>
+                        <span>📂 Day 12 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day12/transactions.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 transactions.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day12/task1.html" class="task-link">
                         <span>Task 1: Money Transfer Transaction</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day12/task2.html" class="task-link">
                         <span>Task 2: Savepoints & Rollback Test</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 13 -->
-            <div class="day-card" data-search="day 13 stored procedures triggers functions automation">
+            <div class="day-card" data-search="day 13 stored procedures triggers functions automation procedures_triggers.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 13 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Procedures & Triggers</h3>
                 <p class="day-desc">Automating database tasks with stored procedures, input parameters, and triggers.</p>
                 <div class="task-list">
                     <a href="day13/index.html" class="task-link">
-                        <span>Day 13 Main Workspace</span>
+                        <span>📂 Day 13 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day13/procedures_triggers.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 procedures_triggers.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day13/task1.html" class="task-link">
                         <span>Task 1: Stored Procedure for User Signup</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day13/task2.html" class="task-link">
                         <span>Task 2: Audit Log Automatic Trigger</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 14 -->
-            <div class="day-card" data-search="day 14 normalization 1nf 2nf 3nf schema design database modeling">
+            <div class="day-card" data-search="day 14 normalization 1nf 2nf 3nf schema design database modeling normalization.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 14 • SQL</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">Database Normalization</h3>
                 <p class="day-desc">1NF, 2NF, 3NF normalization rules, reducing redundancy and anomalies.</p>
                 <div class="task-list">
                     <a href="day14/index.html" class="task-link">
-                        <span>Day 14 Main Workspace</span>
+                        <span>📂 Day 14 Main Workspace</span>
                         <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day14/normalization.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 normalization.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day14/task1.html" class="task-link">
                         <span>Task 1: Decomposing Unnormalized Table</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day14/task2.html" class="task-link">
                         <span>Task 2: Designing 3NF E-Commerce Schema</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
 
             <!-- DAY 15 -->
-            <div class="day-card" data-search="day 15 capstone database project complete schema queries reports">
+            <div class="day-card" data-search="day 15 capstone database project complete schema queries reports capstone.sql">
                 <div class="day-header">
                     <span class="day-badge">DAY 15 • CAPSTONE</span>
-                    <span class="task-count">Ready for Tasks</span>
+                    <span class="task-count">3 Files + Script</span>
                 </div>
                 <h3 class="day-title">SQL Capstone Database</h3>
                 <p class="day-desc">End-to-end relational database: schema creation, mock data, and complex reports.</p>
                 <div class="task-list">
                     <a href="day15/index.html" class="task-link">
-                        <span>Day 15 Capstone Workspace</span>
-                        <span class="task-tag">Capstone</span>
+                        <span>📂 Day 15 Main Workspace</span>
+                        <span class="task-tag">Workspace</span>
+                    </a>
+                    <a href="day15/capstone.sql" class="task-link sql-file-link" target="_blank">
+                        <span>📜 capstone.sql</span>
+                        <span class="task-tag sql-tag">SQL File</span>
                     </a>
                     <a href="day15/task1.html" class="task-link">
                         <span>Task 1: Full Database Initialization</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 1</span>
                     </a>
                     <a href="day15/task2.html" class="task-link">
                         <span>Task 2: Analytical & Reporting Queries</span>
-                        <span class="task-tag">Ready</span>
+                        <span class="task-tag">Task 2</span>
                     </a>
                 </div>
             </div>
-
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer>
-        <p>Frontend Learning Hub • SQL Practice Track • All tasks linked directly</p>
+        <p>Frontend Learning Hub • SQL Practice Track • All tasks and SQL files linked directly</p>
     </footer>
 
     <!-- INTERACTIVE SEARCH SCRIPT -->

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 1 - Task 1: Creating Student & Course Tables</title>
+    <title>Day 7 - Task 1: Relational Schema with Foreign Keys</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -201,20 +201,20 @@
 
     <header class="navbar">
         <div class="logo">Frontend<span>Hub</span></div>
-        <a href="index.html" class="nav-btn">← Day 1 Workspace</a>
+        <a href="index.html" class="nav-btn">← Day 7 Workspace</a>
     </header>
 
     <div class="container">
         <div class="card">
-            <span class="badge">DAY 01 • TASK 01</span>
-            <h1>Creating Student & Course Tables</h1>
-            <p class="objective">Define structured schemas for educational records using appropriate SQL data types and primary key constraints.</p>
+            <span class="badge">DAY 07 • TASK 01</span>
+            <h1>Relational Schema with Foreign Keys</h1>
+            <p class="objective">Construct relational entity schemas tied together with primary and foreign key references and cascade rules.</p>
 
             <div class="task-nav">
                 <a href="index.html">📁 Day Overview</a>
-                <a href="task1.html" class="active">Task 1: Creating Student & Course Tables</a>
-                <a href="task2.html" class="">Task 2: Alter Table & Add Columns</a>
-                <a href="ddl.sql" target="_blank">📜 Raw ddl.sql</a>
+                <a href="task1.html" class="active">Task 1: Relational Schema with Foreign Keys</a>
+                <a href="task2.html" class="">Task 2: CHECK & UNIQUE Constraints</a>
+                <a href="constraints.sql" target="_blank">📜 Raw constraints.sql</a>
             </div>
 
             <div class="section-title">📝 SQL Solution Code</div>
@@ -223,20 +223,17 @@
                     <span>task1_solution.sql</span>
                     <button class="copy-btn" onclick="copyTaskSql()">📋 Copy SQL</button>
                 </div>
-                <pre class="sql-code" id="taskSql">-- Task 1: Create Student & Course Tables
-CREATE TABLE students (
-    student_id INT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    birth_date DATE,
-    gpa DECIMAL(3, 2)
+                <pre class="sql-code" id="taskSql">CREATE TABLE authors (
+    author_id INT PRIMARY KEY,
+    author_name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE courses (
-    course_id INT PRIMARY KEY,
-    title VARCHAR(120) NOT NULL,
-    code VARCHAR(10) UNIQUE,
-    credit_hours INT DEFAULT 3
+CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    author_id INT,
+    price DECIMAL(6,2) CHECK (price >= 0),
+    FOREIGN KEY (author_id) REFERENCES authors(author_id) ON DELETE CASCADE
 );</pre>
             </div>
 
@@ -244,43 +241,40 @@ CREATE TABLE courses (
             <div class="table-responsive">
                 <table>
                     <thead>
-                        <tr><th>student_id</th><th>full_name</th><th>email</th><th>birth_date</th><th>gpa</th></tr>
+                        <tr><th>Constraint Name</th><th>Type</th><th>Source Column</th><th>Referenced Table</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>101</td><td>Aarav Sharma</td><td>aarav.sharma@example.com</td><td>2002-05-14</td><td>3.85</td></tr><tr><td>102</td><td>Priya Patel</td><td>priya.patel@example.com</td><td>2001-11-20</td><td>3.92</td></tr><tr><td>103</td><td>Karthik Raj</td><td>karthik.raj@example.com</td><td>2003-02-18</td><td>3.70</td></tr>
+                        <tr><td>pk_books</td><td>PRIMARY KEY</td><td>book_id</td><td>N/A</td></tr><tr><td>fk_books_authors</td><td>FOREIGN KEY</td><td>author_id</td><td>authors(author_id)</td></tr><tr><td>chk_books_price</td><td>CHECK (>= 0)</td><td>price</td><td>N/A</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="editor-area">
                 <div class="section-title" style="margin-top: 0;">⚡ Practice Query Editor</div>
-                <textarea class="sql-input" placeholder="Type your custom solution query here...">-- Task 1: Create Student & Course Tables
-CREATE TABLE students (
-    student_id INT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    birth_date DATE,
-    gpa DECIMAL(3, 2)
+                <textarea class="sql-input" placeholder="Type your custom solution query here...">CREATE TABLE authors (
+    author_id INT PRIMARY KEY,
+    author_name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE courses (
-    course_id INT PRIMARY KEY,
-    title VARCHAR(120) NOT NULL,
-    code VARCHAR(10) UNIQUE,
-    credit_hours INT DEFAULT 3
+CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    author_id INT,
+    price DECIMAL(6,2) CHECK (price >= 0),
+    FOREIGN KEY (author_id) REFERENCES authors(author_id) ON DELETE CASCADE
 );</textarea>
                 <button style="margin-top: 8px; padding: 7px 15px; background: #7c3aed; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;" onclick="alert('Simulation Successful! Query matches expected output.')">Run Test Query</button>
             </div>
 
             <div class="back-links-row">
-                <a href="index.html" class="back-link">← Return to Day 1 Overview</a>
-                <a href="task2.html" class="back-link">Go to Task 2: Alter Table & Add Columns →</a>
+                <a href="index.html" class="back-link">← Return to Day 7 Overview</a>
+                <a href="task2.html" class="back-link">Go to Task 2: CHECK & UNIQUE Constraints →</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>Frontend Learning Hub • SQL Track • Day 1 Task 1</p>
+        <p>Frontend Learning Hub • SQL Track • Day 7 Task 1</p>
     </footer>
 
     <script>

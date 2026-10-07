@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 1 - Task 1: Creating Student & Course Tables</title>
+    <title>Day 10 - Task 1: Above Average Salary Subquery</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -201,20 +201,20 @@
 
     <header class="navbar">
         <div class="logo">Frontend<span>Hub</span></div>
-        <a href="index.html" class="nav-btn">← Day 1 Workspace</a>
+        <a href="index.html" class="nav-btn">← Day 10 Workspace</a>
     </header>
 
     <div class="container">
         <div class="card">
-            <span class="badge">DAY 01 • TASK 01</span>
-            <h1>Creating Student & Course Tables</h1>
-            <p class="objective">Define structured schemas for educational records using appropriate SQL data types and primary key constraints.</p>
+            <span class="badge">DAY 10 • TASK 01</span>
+            <h1>Above Average Salary Subquery</h1>
+            <p class="objective">Filter records against dynamically computed aggregate benchmarks using subqueries inside WHERE clauses.</p>
 
             <div class="task-nav">
                 <a href="index.html">📁 Day Overview</a>
-                <a href="task1.html" class="active">Task 1: Creating Student & Course Tables</a>
-                <a href="task2.html" class="">Task 2: Alter Table & Add Columns</a>
-                <a href="ddl.sql" target="_blank">📜 Raw ddl.sql</a>
+                <a href="task1.html" class="active">Task 1: Above Average Salary Subquery</a>
+                <a href="task2.html" class="">Task 2: Correlated Subquery Practice</a>
+                <a href="subqueries.sql" target="_blank">📜 Raw subqueries.sql</a>
             </div>
 
             <div class="section-title">📝 SQL Solution Code</div>
@@ -223,64 +223,52 @@
                     <span>task1_solution.sql</span>
                     <button class="copy-btn" onclick="copyTaskSql()">📋 Copy SQL</button>
                 </div>
-                <pre class="sql-code" id="taskSql">-- Task 1: Create Student & Course Tables
-CREATE TABLE students (
-    student_id INT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    birth_date DATE,
-    gpa DECIMAL(3, 2)
-);
-
-CREATE TABLE courses (
-    course_id INT PRIMARY KEY,
-    title VARCHAR(120) NOT NULL,
-    code VARCHAR(10) UNIQUE,
-    credit_hours INT DEFAULT 3
-);</pre>
+                <pre class="sql-code" id="taskSql">SELECT 
+    emp_id, 
+    first_name, 
+    last_name, 
+    salary,
+    (SELECT ROUND(AVG(salary), 2) FROM employees) AS company_avg
+FROM employees 
+WHERE salary > (SELECT AVG(salary) FROM employees)
+ORDER BY salary DESC;</pre>
             </div>
 
             <div class="section-title">📊 Expected Output Table</div>
             <div class="table-responsive">
                 <table>
                     <thead>
-                        <tr><th>student_id</th><th>full_name</th><th>email</th><th>birth_date</th><th>gpa</th></tr>
+                        <tr><th>emp_id</th><th>first_name</th><th>last_name</th><th>salary</th><th>company_avg</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>101</td><td>Aarav Sharma</td><td>aarav.sharma@example.com</td><td>2002-05-14</td><td>3.85</td></tr><tr><td>102</td><td>Priya Patel</td><td>priya.patel@example.com</td><td>2001-11-20</td><td>3.92</td></tr><tr><td>103</td><td>Karthik Raj</td><td>karthik.raj@example.com</td><td>2003-02-18</td><td>3.70</td></tr>
+                        <tr><td>104</td><td>Deepa</td><td>Shah</td><td>$95,000</td><td>$75,000</td></tr><tr><td>101</td><td>Vikram</td><td>Seth</td><td>$88,000</td><td>$75,000</td></tr>
                     </tbody>
                 </table>
             </div>
 
             <div class="editor-area">
                 <div class="section-title" style="margin-top: 0;">⚡ Practice Query Editor</div>
-                <textarea class="sql-input" placeholder="Type your custom solution query here...">-- Task 1: Create Student & Course Tables
-CREATE TABLE students (
-    student_id INT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    birth_date DATE,
-    gpa DECIMAL(3, 2)
-);
-
-CREATE TABLE courses (
-    course_id INT PRIMARY KEY,
-    title VARCHAR(120) NOT NULL,
-    code VARCHAR(10) UNIQUE,
-    credit_hours INT DEFAULT 3
-);</textarea>
+                <textarea class="sql-input" placeholder="Type your custom solution query here...">SELECT 
+    emp_id, 
+    first_name, 
+    last_name, 
+    salary,
+    (SELECT ROUND(AVG(salary), 2) FROM employees) AS company_avg
+FROM employees 
+WHERE salary > (SELECT AVG(salary) FROM employees)
+ORDER BY salary DESC;</textarea>
                 <button style="margin-top: 8px; padding: 7px 15px; background: #7c3aed; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;" onclick="alert('Simulation Successful! Query matches expected output.')">Run Test Query</button>
             </div>
 
             <div class="back-links-row">
-                <a href="index.html" class="back-link">← Return to Day 1 Overview</a>
-                <a href="task2.html" class="back-link">Go to Task 2: Alter Table & Add Columns →</a>
+                <a href="index.html" class="back-link">← Return to Day 10 Overview</a>
+                <a href="task2.html" class="back-link">Go to Task 2: Correlated Subquery Practice →</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>Frontend Learning Hub • SQL Track • Day 1 Task 1</p>
+        <p>Frontend Learning Hub • SQL Track • Day 10 Task 1</p>
     </footer>
 
     <script>
